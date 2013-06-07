@@ -9,4 +9,8 @@ public class Junk {
     public int getNumber(){
         return number;
     }
+    
+    public void changeNum(int num){
+    	number = num;
+    }
 }
