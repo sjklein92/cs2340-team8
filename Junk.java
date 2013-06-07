@@ -13,4 +13,8 @@ public class Junk {
     public void changeNum(int num){
     	number = num;
     }
+    
+    public String toString(){
+    	return number + "";
+    }
 }
