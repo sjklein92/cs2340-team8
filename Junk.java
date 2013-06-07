@@ -8,5 +8,6 @@ public class Junk {
     
     public int getNumber(){
         return number;
-    
+        
+    }
 }
