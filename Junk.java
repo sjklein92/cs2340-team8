@@ -5,8 +5,4 @@ public class Junk {
     public Junk(int number) {
         this.number = number;
     }
-    
-    public int getNumber(){
-        return number;
-    }
 }
