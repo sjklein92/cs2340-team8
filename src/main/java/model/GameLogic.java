@@ -1,4 +1,4 @@
-package src.model;
+package src.main.java.model;
 
 /**
  * Controls player movement, attack, etc. 
