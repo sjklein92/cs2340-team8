@@ -31,7 +31,7 @@
 
     <!-- Compile Java classes as necessary -->
     <mkdir    dir="${build.home}/WEB-INF/classes"/>
-    <javac debug="true" debuglevel="${debuglevel}" destdir="${build.home}/WEB-INF/classes" includeantruntime="false" source="${source}" target="${target}">
+    <javac  destdir="${build.home}/WEB-INF/classes" includeantruntime="false">
             <src path="."/>
             <classpath refid="compile.classpath"/>
         </javac>
