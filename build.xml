@@ -31,8 +31,8 @@
 
     <!-- Compile Java classes as necessary -->
     <mkdir    dir="${build.home}/WEB-INF/classes"/>
-    <javac  destdir="${build.home}/WEB-INF/classes" includeantruntime="false">
-            <src path="."/>
+    <javac  srcdir="${src.home}"
+            destdir="${build.home}/WEB-INF/classes" includeantruntime="false">  
             <classpath refid="compile.classpath"/>
         </javac>
    
