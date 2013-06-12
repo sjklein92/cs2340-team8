@@ -1,9 +1,18 @@
 package src.main.java.model;
 
 /**
- * Controls player movement, attack, etc. 
+ * Game initialization and processing
  */
 public class GameLogic
 {
 
+    /**
+     * Creates a linked system of planets for each player
+     * @param player
+     * @return
+     */
+    public Planet[] createStarSystem(Player[] players) {
+        //TODO
+        return null;
+    }
 }
