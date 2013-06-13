@@ -1,4 +1,4 @@
-<%@ page import="edu.gatech.cs2340.todo.risk.Player" %>
+<%@ page import="edu.gatech.cs2340.risk.model.Player" %>
 <%@ page import="java.util.*" %>
 
 <% ArrayList<Player> players = 
