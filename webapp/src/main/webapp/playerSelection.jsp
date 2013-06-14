@@ -12,7 +12,7 @@
 
     </head>
     <body>
-		<h1>Select your Players</h1>
+		<h1>Select Your Players</h1>
         <div id="Red"></div>
         <div id="Blue"></div>
         <div id="Yellow"></div>
