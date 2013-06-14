@@ -1,6 +1,11 @@
 package src.main.java.model;
+<<<<<<< HEAD
+=======
+
+>>>>>>> fc61a82153b292c17df401453198ee5695dcf13e
 //Brad's comment
 // some more comments
+
 // Added stuff
 /**
  * This class contains pointers to previous and next planets in its star system
