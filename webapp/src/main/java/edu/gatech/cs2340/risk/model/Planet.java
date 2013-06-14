@@ -1,6 +1,4 @@
 package src.main.java.model;
-<<<<<<< HEAD
-
 
 //Brad's comment
 // some more comments
