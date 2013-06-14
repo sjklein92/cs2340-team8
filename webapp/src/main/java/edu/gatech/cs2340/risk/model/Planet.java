@@ -1,4 +1,4 @@
-package src.main.java.model;
+package edu.gatech.cs2340.risk.model;
 
 //Brad's comment
 // some more comments
