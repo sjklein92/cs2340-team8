@@ -13,6 +13,10 @@ public class Planet
 
     Planet prevPlanet, nextPlanet = null;
 
+    /**
+    * Sets the previous planet in the star system
+    * @param prevPlanet the previous planet in the star system
+    */
     public void setPrevPlanet(Planet prevPlanet) {
         this.prevPlanet = prevPlanet;
     }
@@ -25,10 +29,17 @@ public class Planet
         this.nextPlanet = nextPlanet;
     }
     
+    /**
+    * Gets the previous planet 
+    * @return the previous planet
+    */
    public Planet getPrevPlanet() {
        return prevPlanet;
    }
-    
+     /**
+     * Gets the next planet. 
+     * @return the next planet
+     */
     public Planet getNextPlanet() {
         return nextPlanet;
     }
