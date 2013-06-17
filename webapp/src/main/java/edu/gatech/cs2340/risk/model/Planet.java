@@ -1,6 +1,6 @@
 package edu.gatech.cs2340.risk.model;
 
-//Brad's comment x 2
+//Brad's comment
 // some more comments
 
 // Added stuff
