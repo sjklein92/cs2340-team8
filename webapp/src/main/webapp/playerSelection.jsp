@@ -12,7 +12,7 @@
 
     </head>
     <body>
-		<h1>Select Your Players</h1>
+		<h1>Select your Players</h1>
         <div id="Red"></div>
         <div id="Blue"></div>
         <div id="Yellow"></div>
@@ -22,7 +22,7 @@
 		
 	<table>
 		<tr>
-			<th>Name</th><th>Color</th>
+			<th>Name</th><th>Color</th><th>Fleets</th>
 		</tr>
 		<% for (int id = 0; id < players.size(); id++) { %>
 		<% Player player = players.get(id); %>
@@ -37,9 +37,21 @@
 			  <input type="hidden" name="operation" value="PUT"/>
 			  <td><input type="text" name="name" value="<%= player.getName() %>"/></td>
 			  <td>
-				<input id="playerColor" type="text" style="background-color: <%= player.getColor()%>"/>
+				<input id="playerColor" type="text" style="background-color: <%= player.getColor()%>" readonly="readonly"/>
 				<input type="hidden" name="color" value="<%= player.getColor() %>"/>
 			  </td>
+			  <% int numOfFleets = 35;
+				 if (players.size() == 4)
+					numOfFleets = 30;
+				 else if (players.size() == 5)
+					numOfFleets = 25;
+				 else if (players.size() == 6)
+					numOfFleets = 20;
+				 player.setNumFleets(numOfFleets);
+			  %>
+			  
+			  
+			  <td><%= player.getFleets() %></td>
 			<!--  <td><input type="submit" value="Update"/></td> -->
 			</form>
 
@@ -59,10 +71,10 @@
 			<form action="/risk/create" method="POST">
 			  <td><input type="text" name="name" value="Enter your name" onfocus="blank(this)" onblur="unblank(this)"/></td>
 			  <td>
-				<input id="colorBar" type="text" value=""/>
+				<input id="colorBar" type="text" value="" readonly="readonly"/>
 				<input id="color" name="color" type="hidden" value=""/>
 			  </td>
-			  <td><input type="submit" value="Add"/></td>
+			  <td><input id="add" type="submit" value="Add"/></td>
 			</form>
 			<td></td> <!-- empty cell to align with previous cells -->
 		</tr>
