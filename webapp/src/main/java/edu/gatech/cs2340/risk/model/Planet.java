@@ -2,7 +2,7 @@ package edu.gatech.cs2340.risk.model;
 
 //Brad's comment x 2
 // some more comments
-//testbranch comment
+//testbranch comment x2
 
 // Added stuff
 /**
