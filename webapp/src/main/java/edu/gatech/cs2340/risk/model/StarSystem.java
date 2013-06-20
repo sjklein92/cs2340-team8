@@ -44,7 +44,7 @@ public class StarSystem {
     */
 
     public void newOwner(Player newOwner){
-    	if(hasOwner){
+    	if(hasOwner()){
     		owner = newOwner;
     	}
     }
