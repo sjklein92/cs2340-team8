@@ -12,36 +12,44 @@ package edu.gatech.cs2340.risk.model;
 public class Planet
 {
 
-    Planet prevPlanet, nextPlanet = null;
+    private Planet prevPlanet, nextPlanet;
+    private Player owner;
+    private int numFleets; 
 
-    /**
-    * Sets the previous planet in the star system
-    * @param prevPlanet the previous planet in the star system
-    */
+    public Planet(Player owner, int numFleets) {
+        this.owner = owner;
+        this.numFleets = numFleets; 
+    }
+
     public void setPrevPlanet(Planet prevPlanet) {
         this.prevPlanet = prevPlanet;
     }
     
-    /**
-     * 
-     * @param nextPlanet: the next planet in the star system 
-     */
     public void setNextPlanet(Planet nextPlanet) {
         this.nextPlanet = nextPlanet;
     }
     
-    /**
-    * Gets the previous planet 
-    * @return the previous planet
-    */
    public Planet getPrevPlanet() {
        return prevPlanet;
    }
-     /**
-     * Gets the next planet. 
-     * @return the next planet
-     */
+   
     public Planet getNextPlanet() {
         return nextPlanet;
+    }
+
+    public void setOwner (Player owner) {
+        this.owner = owner;
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setFleets(int numFleets) {
+        this.numFleets = numFleets;
+    }
+
+    public int getFleets() {
+        return numFleets;
     }
 }
