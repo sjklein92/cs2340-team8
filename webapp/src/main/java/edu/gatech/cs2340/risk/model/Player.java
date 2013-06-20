@@ -19,6 +19,12 @@ public class Player {
 		this.totalFleets = totalFleets;
 	}
 
+	public Player(String name, String color){
+		this.name = name;
+		this.color = color;
+		totalFleets = 35;
+	}
+
 	/**
 	* Getter method for the number of fleets associated with the player
 	* @return the number of fleets this player has
