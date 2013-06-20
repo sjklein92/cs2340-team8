@@ -10,10 +10,12 @@ public class GameLogic
 
     private int numPlayers;
     ArrayList<StarSystem> systems;
+    private ArrayList<Player> players;
     
     public GameLogic (ArrayList<Player> players) {
+        this.players = players;
         numPlayers = players.size();
-        initializeStarSystem();
+        initializeStarSystems();
 
     }
     /**
@@ -25,6 +27,7 @@ public class GameLogic
         for(Player current: players){
             systems.add(new StarSystem(current));
         }
+        return systems;
     }
     
 

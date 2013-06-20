@@ -10,6 +10,7 @@ import java.util.*;
 public class StarSystem {
     ArrayList<Planet> planets;
     private Player owner;
+    private final static int SYSTEM_SIZE = 5;
 
     /**
     * Defines that a Star Sytem has an owner that is a Player it takes in
@@ -18,9 +19,10 @@ public class StarSystem {
 
     public StarSystem(Player owner){
     	this.owner = owner;
-		planets = new ArrayList<Planet>(5);
-		for (Planet planet : planets) {
-            planet = new Planet(owner, owner.getFleets());
+		planets = new ArrayList<Planet>(SYSTEM_SIZE);
+		for (int i=0; i<SYSTEM_SIZE; i++) {
+            Planet planet = new Planet(owner, owner.getFleets());
+            planets.add(planet);
         }
     }
 
@@ -57,9 +59,4 @@ public class StarSystem {
     public Player getOwner(){
     	return owner;
     }
-
-
-
-
-
 }
