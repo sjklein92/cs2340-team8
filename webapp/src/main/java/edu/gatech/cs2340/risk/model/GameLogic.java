@@ -9,13 +9,13 @@ public class GameLogic
 {
 
     private int numPlayers;
-    ArrayList<StarSystem> systems;
+    ArrayList<StarSystem> allTheSystems;
     private ArrayList<Player> players;
     
     public GameLogic (ArrayList<Player> players) {
         this.players = players;
         numPlayers = players.size();
-        initializeStarSystems();
+        initializeStarallTheSystems();
 
     }
     /**
@@ -23,11 +23,11 @@ public class GameLogic
      * @param player
      * @return
      */
-    public ArrayList<StarSystem> initializeStarSystems(){        
+    public ArrayList<StarSystem> initializeStarallTheSystems(){        
         for(Player current: players){
-            systems.add(new StarSystem(current));
+            allTheSystems.add(new StarSystem(current));
         }
-        return systems;
+        return allTheSystems;
     }
     
 
