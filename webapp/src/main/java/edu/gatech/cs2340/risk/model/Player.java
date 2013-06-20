@@ -13,9 +13,10 @@ public class Player {
 	* @param Name, Color: String's that set the Player's name and Color
 	*/
 	
-	public Player(String name, String color){
+	public Player(String name, String color, int totalFleets){
 		this.name = name;
 		this.color = color;
+		this.totalFleets = totalFleets;
 	}
 
 	/**
