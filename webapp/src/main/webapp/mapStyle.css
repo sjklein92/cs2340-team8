@@ -1,0 +1,12 @@
+body {
+    background-color: black;
+    background-image: url('images/mapBackground.jpg');
+    background-repeat: no-repeat;
+}
+
+div {
+    height:100px;
+    width:100px;
+    display: inline-block;
+	border-radius: 5px;
+}

@@ -17,7 +17,7 @@
         <div id="Blue"></div>
         <div id="Yellow"></div>
         <div id="Green"></div>
-		<div id="Purple"></div>
+		<div id="Purple"></div> 
         <div id="Orange"></div>
 		
 	<table>
@@ -40,6 +40,7 @@
 				<input id="playerColor" type="text" style="background-color: <%= player.getColor()%>" readonly="readonly"/>
 				<input type="hidden" name="color" value="<%= player.getColor() %>"/>
 			  </td>
+<<<<<<< HEAD
 			  <% int numOfFleets = 35;
 				 if (players.size() == 4)
 					numOfFleets = 30;
@@ -48,6 +49,16 @@
 				 else if (players.size() == 6)
 					numOfFleets = 20;
 				 player.setNumFleets(numOfFleets);
+=======
+			  <% int totalFleets = 35;
+				 if (players.size() == 4)
+					totalFleets = 30;
+				 else if (players.size() == 5)
+					totalFleets = 25;
+				 else if (players.size() == 6)
+					totalFleets = 20;
+				 player.setTotalFleets(totalFleets);
+>>>>>>> 06e27f69a593c00dd7de10ecf34a91a4a6c77091
 			  %>
 			  
 			  
@@ -81,7 +92,7 @@
 		<tr><td></td></tr>
 		<tr>
 			<td>
-				<a href="next.html">
+				<a href="next.jsp">
 					<button>Start!</button>
 				</a>
 			<form action="/risk/create" method="POST">
