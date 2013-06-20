@@ -15,7 +15,7 @@ public class GameLogic
     public GameLogic (ArrayList<Player> players) {
         this.players = players;
         numPlayers = players.size();
-        initializeStarallTheSystems();
+        initializeStarSystems();
 
     }
     /**
@@ -23,7 +23,7 @@ public class GameLogic
      * @param player
      * @return
      */
-    public ArrayList<StarSystem> initializeStarallTheSystems(){        
+    public ArrayList<StarSystem> initializeStarSystems(){        
         for(Player current: players){
             allTheSystems.add(new StarSystem(current));
         }
