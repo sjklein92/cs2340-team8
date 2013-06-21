@@ -14,6 +14,7 @@ public class GameLogic
     public GameLogic (ArrayList<Player> players) {
         this.players = players;
         numPlayers = players.size();
+        allSystems = new ArrayList<StarSystem>();
         
 		for(Player player: players){
             allSystems.add(new StarSystem(player));
