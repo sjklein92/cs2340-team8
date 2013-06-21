@@ -6,7 +6,9 @@
 
 
 <% ArrayList<Player> players = 
-    (ArrayList<Player>) request.getAttribute("players"); 
+    (ArrayList<Player>) request.getAttribute("players");
+    
+   GameLogic game = new GameLogic(players); 
 %>
 
 	
