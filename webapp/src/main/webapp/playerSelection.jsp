@@ -77,9 +77,10 @@
 			  </td>
 			  <td><input id="add" type="submit" value="Add"/></td>
 			   <script type="text/javascript">
-         		if(<%players.size() == 6%>){
-          			document.getElementById("add").disabled = true;
+         		if('<%= players.size() %>' == '6') {
+          			document.getElementById('add').disabled = true;
         		}
+        		</script>	
       </script>      
 			</form>
 			<td></td> <!-- empty cell to align with previous cells -->
@@ -92,6 +93,11 @@
 				<input type="hidden" name="operation" value="GAME">
 				<a href="next.jsp">
 					<input id='start' type="submit" value="Start!">
+					<script type="text/javascript">
+         		if('<%= players.size() %>' < '3') {
+          			document.getElementById('start').disabled = true;
+        		}
+        		</script>	
 				</a>
 			</form>
 			
