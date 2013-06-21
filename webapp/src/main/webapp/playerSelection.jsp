@@ -94,10 +94,10 @@
 				<a href="next.jsp">
 					<input id='start' type="submit" value="Start!">
 					<script type="text/javascript">
-         		if('<%= players.size() %>' < '3') {
-          			document.getElementById('start').disabled = true;
-        		}
-        		</script>	
+         				if('<%= players.size() %>' < '3') {
+          					document.getElementById('start').disabled = true;
+        				}
+        			</script>	
 				</a>
 			</form>
 			
