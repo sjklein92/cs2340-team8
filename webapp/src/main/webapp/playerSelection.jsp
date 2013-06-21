@@ -76,6 +76,11 @@
 				<input id="color" name="color" type="hidden" value=""/>
 			  </td>
 			  <td><input id="add" type="submit" value="Add"/></td>
+			   <script type="text/javascript">
+         		if(<%players.size() == 6%>){
+          			document.getElementById("add").disabled = true;
+        		}
+      </script>      
 			</form>
 			<td></td> <!-- empty cell to align with previous cells -->
 		</tr>
