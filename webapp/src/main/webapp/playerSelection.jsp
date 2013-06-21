@@ -19,7 +19,7 @@
         <div id="Green"></div>
 		<div id="Purple"></div> 
         <div id="Orange"></div>
-		
+
 	<table>
 		<tr>
 			<th>Name</th><th>Color</th><th>Fleets</th>
@@ -29,11 +29,11 @@
 		<tr>
 			<form action="/risk/update/<%= id %>" method="POST">
 			  <!-- hidden operation element to simulate HTTP PUT method in server -->
-			  
+
 			  <script type="text/javascript">
 				document.getElementById('<%= player.getColor() %>').style.display = "none";
 			  </script>
-			  
+
 			  <input type="hidden" name="operation" value="PUT"/>
 			  <td><input type="text" name="name" value="<%= player.getName() %>"/></td>
 			  <td>
@@ -50,8 +50,8 @@
 					totalFleets = 20;
 				 player.setTotalFleets(totalFleets);
 			  %>
-			  
-			  
+
+
 			  <td><%= player.getFleets() %></td>
 			<!--  <td><input type="submit" value="Update"/></td> -->
 			</form>
@@ -61,7 +61,7 @@
 				<input type="hidden" name="operation" value="DELETE"/>
 			<!--	<input type="submit" value="Delete"/> -->
 			  </form>
-			
+
 		</tr>			
 		<% } %>
 		<tr>			
@@ -75,22 +75,13 @@
 				<input id="colorBar" type="text" value="" readonly="readonly"/>
 				<input id="color" name="color" type="hidden" value=""/>
 			  </td>
-			  
 			  <td><input id="add" type="submit" value="Add"/></td>
-<<<<<<< HEAD
-			 <script type="text/javascript">
-			   if(<%players.size() == 6%>){
-			  	document.getElementById("add").disabled = true;
-			  }
-			</script>			
-=======
 			   <script type="text/javascript">
          		if('<%= players.size() %>' == '6') {
           			document.getElementById('add').disabled = true;
         		}
         		</script>	
       </script>      
->>>>>>> 2be03f15bf550a9be4e1f6ebfaf9f0e187061399
 			</form>
 			<td></td> <!-- empty cell to align with previous cells -->
 		</tr>
@@ -109,8 +100,8 @@
         			</script>	
 				</a>
 			</form>
-			
-			
+
+
 			<form action="/risk/create" method="POST">
 				<input type="hidden" name="operation" value="RANDOM">
 				<input type="submit" value="Randomize Order"/>
@@ -118,25 +109,6 @@
 			</td>
 		</tr>
 	</table>
-			
+
     </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
