@@ -7,13 +7,13 @@
 
 <% ArrayList<Player> players = 
     (ArrayList<Player>) request.getAttribute("players"); 
-	
-   // GameLogic game = new GameLogic(players);
    
-   // ArrayList<StarSystem> systems = game.getAllSystems();
-%>
+   ArrayList<StarSystem> systems = 
+    (ArrayList<StarSystem>) request.getAttribute("systems"); 
+  
+   GameLogic game = (GameLogic) request.getAttribute("game"); %>
 
-	
+
 	
 <html>
     <head>
@@ -27,11 +27,21 @@
 				<td id="0" height="200" width="200">
 					<div class="container" id="starSystem1">
 						<img src="images/starSystem.gif" width="200" height="200">
-						<div class="planetTemp" id="-1"></div>
-						<div class="planetTemp" id="-2"></div>
-						<div class="planetTemp" id="-3"></div>
-						<div class="planetTemp" id="-4"></div>
-						<div class="planetTemp" id="-5"></div>
+						<div class="planetTemp" id="-1">
+							<a href=""><span></span></a> <!--Using empty span to make div clickable -->
+						</div>
+						<div class="planetTemp" id="-2">
+							 <a href=""><span></span></a>
+						</div>
+						<div class="planetTemp" id="-3">
+							 <a href=""><span></span></a>
+						</div>
+						<div class="planetTemp" id="-4">
+							 <a href=""><span></span></a>
+						</div>
+						<div class="planetTemp" id="-5">
+							 <a href=""><span></span></a>
+						</div>
 					</div>
 				</td>
 				<td id="3" height="200" width="200"></td>
@@ -55,16 +65,20 @@
 				$(this).attr('id', 'startSystem' + (index + 1));
 			})
 			
-			for (var starSystem = 1; starSystem < <%= players.size() + 1%>; starSystem++) {
+			<% for (int i = 0; i <  systems.size(); i++) {
+					 StarSystem currentSystem =  systems.get(i); %>
 				$(".planetTemp").each( function(index) {
+					var newId = 'planet' + (<%=i%>+1) + (this).id;
+					var newColor = '<%= currentSystem.getOwner().getColor() %>';
 					$(this).removeAttr('class');
 					$(this).attr('class', 'planet');
-					$(this).attr('id', 'planet' + starSystem + (this).id);
+					$(this).attr('id', newId);
+					$(this).css("background", newColor);
 					if ((index + 1)%5 == 0) {
 						return false;
 					}
 				})
-			}
+			<%}%>
 		</script>
 
 
