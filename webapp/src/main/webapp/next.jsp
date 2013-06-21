@@ -7,6 +7,10 @@
 
 <% ArrayList<Player> players = 
     (ArrayList<Player>) request.getAttribute("players"); 
+	
+   // GameLogic game = new GameLogic(players);
+   
+   // ArrayList<StarSystem> systems = game.getAllSystems();
 %>
 
 	
@@ -61,7 +65,6 @@
 					}
 				})
 			}
-			
 		</script>
 
 

@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 	public class RiskServlet extends HttpServlet {
 
     ArrayList<Player> players = new ArrayList<Player>();
-	GameLogic game = new GameLogic(players);
-	ArrayList<StarSystem> systems = game.getAllSystems();
+	// GameLogic game = new GameLogic(players);
+	// ArrayList<StarSystem> systems = game.getAllSystems();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -91,10 +91,7 @@ import javax.servlet.http.HttpServletResponse;
                          HttpServletResponse response)
             throws IOException, ServletException {
         System.out.println("In doGame()");
-		
 		request.setAttribute("players", players);
-		request.setAttribute("game", game);
-		request.setAttribute("systems", systems);
         RequestDispatcher dispatcher = 
             getServletContext().getRequestDispatcher("/next.jsp");
         dispatcher.forward(request,response);
