@@ -5,7 +5,7 @@
 <%@ page import="java.util.*" %>
 
 
-<% ArrayList<Player> players = http://www.rockpapershotgun.com/tag/digital-eel/
+<% ArrayList<Player> players = 
     (ArrayList<Player>) request.getAttribute("players"); 
    
    ArrayList<StarSystem> systems = 
