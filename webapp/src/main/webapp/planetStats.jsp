@@ -11,5 +11,7 @@
 
     </head>
 
-    <body> Planet's Owner is <%
+    <body> Planet's Owner is <% %>
+    </body>
+</html>
 

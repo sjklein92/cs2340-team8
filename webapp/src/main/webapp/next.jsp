@@ -28,19 +28,19 @@
 					<div class="container" id="starSystem1">
 						<img src="images/starSystem.gif" width="200" height="200">
 						<div class="planetTemp" id="-1">
-							<a href=""><span></span></a> <!--Using empty span to make div clickable -->
+							<a href="planetStats.jsp"><span></span></a> <!--Using empty span to make div clickable -->
 						</div>
 						<div class="planetTemp" id="-2">
-							 <a href=""><span></span></a>
+							 <a href="planetStats.jsp"><span></span></a>
 						</div>
 						<div class="planetTemp" id="-3">
-							 <a href=""><span></span></a>
+							 <a href="planetStats.jsp"><span></span></a>
 						</div>
 						<div class="planetTemp" id="-4">
-							 <a href=""><span></span></a>
+							 <a href="planetStats.jsp"><span></span></a>
 						</div>
 						<div class="planetTemp" id="-5">
-							 <a href=""><span></span></a>
+							 <a href="planetStats.jsp"><span></span></a>
 						</div>
 					</div>
 				</td>
@@ -64,7 +64,7 @@
 				$(this).removeAttr('id');
 				$(this).attr('id', 'startSystem' + (index + 1));
 			})
-			
+				
 			<% for (int i = 0; i <  systems.size(); i++) {
 					 StarSystem currentSystem =  systems.get(i); %>
 				$(".planetTemp").each( function(index) {
