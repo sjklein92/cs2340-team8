@@ -16,6 +16,7 @@ $(document).ready(function() {
 	   color = (this).id;
 	   document.getElementById('colorBar').style.background = color;
 	   document.getElementById('color').value = color;
+	   document.getElementById('add').disabled = false;
 	   $(this).remove;
    }); 
 });
