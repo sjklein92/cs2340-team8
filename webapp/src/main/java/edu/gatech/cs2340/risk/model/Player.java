@@ -7,7 +7,7 @@ public class Player {
 	private String name;
 	private int totalFleets;
 	private String color;
-	private int numPlanets, moreFleets //
+	private int numPlanets, moreFleets; //
 
 	/**
 	* Sets a Player's constructor to take in a Name, and a Color
@@ -61,7 +61,7 @@ public class Player {
 			moreFleets = 3;
 		}
 		else{
-			int fleetsToAdd = numFleets / 3;
+			int fleetsToAdd = totalFleets / 3;
 			if(fleetsToAdd > 0){
 				moreFleets = fleetsToAdd;
 			}
