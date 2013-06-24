@@ -109,7 +109,6 @@
 			</td>
 		</tr>
 	</table>
-<<<<<<< HEAD
 
     </body>
 </html>
@@ -117,5 +116,3 @@
 			
     </body>
 </html>
-
->>>>>>> a5dfd1af849379f9fe5954c717586f6478bf98bc
