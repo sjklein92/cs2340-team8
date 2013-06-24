@@ -29,7 +29,15 @@ public class Player {
 		numPlanets = 5; //
 		moreFleets = 0; //
 	}
-
+	
+	public void incrNumPlanets(){
+		numPlanets++;
+	}
+	
+	public void decrNumPlanets(){
+		--numPlanets;
+	}
+	
 	/**
 	* Getter method for the number of fleets associated with the player
 	* @return the number of fleets this player has
@@ -53,7 +61,7 @@ public class Player {
 		totalFleets = newTotalFleets;
 	}
 	
-	public int calcMoreFleets(){
+	public int calcMoreFleets(){ //
 		
 		moreFleets = 0;
 		
