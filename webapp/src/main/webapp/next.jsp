@@ -29,6 +29,7 @@
 						<img src="images/starSystem.gif" width="200" height="200">
 						<div class="planetTemp" id="-1">
 							<a href="planetStats.jsp"><span></span></a> <!--Using empty span to make div clickable -->
+							<a href=planetInfo><span></span></a> <!--Using empty span to make div clickable -->
 						</div>
 						<div class="planetTemp" id="-2">
 							 <a href="planetStats.jsp"><span></span></a>
@@ -56,6 +57,7 @@
 				<td id="5" height="200" width="200"></td>
 			</tr>
 		</table>
+
 		<script type="text/javascript">
 			for (var i = 1; i < <%= players.size() %>; i++) {
 				$('#starSystem1').clone().appendTo('#' + i);
@@ -70,6 +72,7 @@
 				$(".planetTemp").each( function(index) {
 					var newId = 'planet' + (<%=i%>+1) + (this).id;
 					var newColor = '<%= currentSystem.getOwner().getColor() %>';
+					var planetInfoUrl = "planetInfo.jsp"
 					$(this).removeAttr('class');
 					$(this).attr('class', 'planet');
 					$(this).attr('id', newId);
@@ -80,6 +83,7 @@
 				})
 			<%}%>
 		</script>
+
 
 
     </body>
