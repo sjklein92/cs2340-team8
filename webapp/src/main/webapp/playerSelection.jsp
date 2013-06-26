@@ -35,7 +35,7 @@
 			  </script>
 
 			  <input type="hidden" name="operation" value="PUT"/>
-			  <td><input type="text" name="name" value="<%= player.getName() %>"/></td>
+			  <td><input id="name" type="text" name="name" value="<%= player.getName() %>"/></td>
 			  <td>
 				<input id="playerColor" type="text" style="background-color: <%= player.getColor()%>" readonly="readonly"/>
 				<input type="hidden" name="color" value="<%= player.getColor() %>"/>
@@ -70,16 +70,24 @@
 			function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
 		</script>
 			<form action="/risk/create" method="POST">
-			  <td><input type="text" name="name" value="Enter your name" onfocus="blank(this)" onblur="unblank(this)"/></td>
+			  <td><input id="name2" type="text" name="name" value="Enter your name" onfocus="blank(this)" onblur="unblank(this)"/></td>
 			  <td>
 				<input id="colorBar" type="text" value="" readonly="readonly"/>
 				<input id="color" name="color" type="hidden" value=""/>
 			  </td>
-			  <td><input id="add" type="submit" value="Add"/></td>
+			  <td><input id="add" type="submit" value="Add" disabled/></td>
 			   <script type="text/javascript">
-         		if('<%= players.size() %>' == '6') {
+         		if('<%= players.size() %>' >= '6') {
           			document.getElementById('add').disabled = true;
         		}
+        		if(document.getElementById('playerColor').style.backgroundColor=="") 
+        		{
+        			document.getElementById('add').disabled = true;
+        		}
+        		if(document.getElementById('name2').value!="Enter your name") 
+        		{
+        			document.getElementById('add').disabled = false;
+       			}
         		</script>	
       </script>      
 			</form>
@@ -112,7 +120,6 @@
 
     </body>
 </html>
-=======
 			
     </body>
 </html>
