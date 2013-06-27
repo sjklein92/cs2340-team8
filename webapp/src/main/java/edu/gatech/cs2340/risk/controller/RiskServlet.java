@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 
     ArrayList<Player> players = new ArrayList<Player>();
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
@@ -50,6 +49,9 @@ import javax.servlet.http.HttpServletResponse;
 		} else if (operation.equalsIgnoreCase("GAME")) {
 			System.out.println("Delegating to doGame().");
 			doGame(request, response);
+        } else if (operation.equalsIgnoreCase("PLANET_INFO")) {
+            System.out.println("Delegating to doPlanetStats");
+            doPlanetStats(request, response);
 		} else {
             String name = request.getParameter("name");
             String color = request.getParameter("color");
@@ -99,7 +101,16 @@ import javax.servlet.http.HttpServletResponse;
             getServletContext().getRequestDispatcher("/next.jsp");
         dispatcher.forward(request,response);
     }
-	
+
+
+    protected void doPlanetStats(HttpServletRequest request,
+                                HttpServletResponse response)
+            throws IOException, ServletException {
+       
+        RequestDispatcher dispatcher =
+            getServletContext().getRequestDispatcher("/planetStats.jsp");
+        dispatcher.forward(request, response);
+    }
 	
     protected void doPut(HttpServletRequest request,
                          HttpServletResponse response)
@@ -132,13 +143,6 @@ import javax.servlet.http.HttpServletResponse;
         // Strip off the leading slash, e.g. "/2" becomes "2"
         String idStr = uri.substring(1, uri.length()); 
         return Integer.parseInt(idStr);
-    }
-
-    protected void doAttack(HttpServletRequest request, 
-        HttpServletResponse response) {
-        // TODO
-    }
-
-    
+    }    
 
 }

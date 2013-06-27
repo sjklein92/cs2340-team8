@@ -28,7 +28,9 @@
 					<div class="container" id="starSystem1">
 						<img src="images/starSystem.gif" width="200" height="200">
 						<div class="planetTemp" id="-1">
+							<form action="/risk/create" method="PLANET_INFO">
 							<a href="planetStats.jsp"><span></span></a> <!--Using empty span to make div clickable -->
+							</form>
 						</div>
 						<div class="planetTemp" id="-2">
 							 <a href="planetStats.jsp"><span></span></a>
@@ -56,7 +58,7 @@
 				<td id="5" height="200" width="200"></td>
 			</tr>
 		</table>
-
+		<input type="button" value="End Turn">
 		<script type="text/javascript">
 			for (var i = 1; i < <%= players.size() %>; i++) {
 				$('#starSystem1').clone().appendTo('#' + i);
@@ -67,7 +69,8 @@
 			})
 				
 			<% for (int i = 0; i <  systems.size(); i++) {
-					 StarSystem currentSystem =  systems.get(i); %>
+					 StarSystem currentSystem =  systems.get(i); 
+				}%>
 				$(".planetTemp").each( function(index) {
 					var newId = 'planet' + (<%=i%>+1) + (this).id;
 					var newColor = '<%= currentSystem.getOwner().getColor() %>';
