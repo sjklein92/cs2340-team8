@@ -11,7 +11,8 @@
    ArrayList<StarSystem> systems = 
     (ArrayList<StarSystem>) request.getAttribute("systems"); 
   
-   GameLogic game = (GameLogic) request.getAttribute("game"); %>
+   GameLogic game = (GameLogic) request.getAttribute("game"); 
+ %>
 
 
 	
@@ -57,32 +58,39 @@
 			</tr>
 		</table>
 
+		<div class="turnFinisher">
+			<form name="input" action="/risk/turn" method="END_TURN">
+			<input type="submit" name="submit" value="End Turn">
+			</form>
+		</div>
+
 		<script type="text/javascript">
 			for (var i = 1; i < <%= players.size() %>; i++) {
-				$('#starSystem1').clone().appendTo('#' + i);
+					$('#starSystem1').clone().appendTo('#' + i);
 			}
 			$(".container").each( function(index) {
 				$(this).removeAttr('id');
-				$(this).attr('id', 'startSystem' + (index + 1));
+				$(this).attr('id', 'starSystem' + (index + 1));
 			})
-				
-			<% for (int i = 0; i <  systems.size(); i++) {
-					 StarSystem currentSystem =  systems.get(i); %>
+
+			<% for (int i = 0; i < systems.size(); i++) {
+				StarSystem currentSystem = systems.get(i); %>
 				$(".planetTemp").each( function(index) {
 					var newId = 'planet' + (<%=i%>+1) + (this).id;
 					var newColor = '<%= currentSystem.getOwner().getColor() %>';
+					<% Player player = currentSystem.getOwner();
+					   session.setAttribute("player", player);
+					%>; 
 					$(this).removeAttr('class');
 					$(this).attr('class', 'planet');
 					$(this).attr('id', newId);
 					$(this).css("background", newColor);
-					if ((index + 1)%5 == 0) {
+					if ((index + 1)%5 == 0) 
 						return false;
-					}
+				
 				})
 			<%}%>
 		</script>
-
-
 
     </body>
 </html>

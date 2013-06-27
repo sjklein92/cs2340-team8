@@ -14,6 +14,8 @@ span {
     background-image: url('empty.gif');
 }
 
+
+
 .container {
 	position: relative;
 }
@@ -22,6 +24,11 @@ span {
 	position: absolute;
 	width: .8em; height: .8em; 
     -webkit-border-radius: 0.4em; -moz-border-radius: 0.4em;
+}
+
+.turnFinisher {
+    position: relative;
+    left: 50%;
 }
 
 #planet1-1 {

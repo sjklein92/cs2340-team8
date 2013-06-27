@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns={
         "/playerSelection", // GET
 		"/game", //GAME
+        "/turn", //END_TURN
         "/create", // POST 
         "/update/*", // PUT
         "/delete/*" // DELETE
