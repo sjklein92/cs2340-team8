@@ -71,7 +71,6 @@
 				$(".planetTemp").each( function(index) {
 					var newId = 'planet' + (<%=i%>+1) + (this).id;
 					var newColor = '<%= currentSystem.getOwner().getColor() %>';
-					var planetInfoUrl = "planetInfo.jsp"
 					$(this).removeAttr('class');
 					$(this).attr('class', 'planet');
 					$(this).attr('id', newId);
@@ -81,6 +80,8 @@
 					}
 				})
 			<%}%>
+			
+			
 		</script>
 
 
