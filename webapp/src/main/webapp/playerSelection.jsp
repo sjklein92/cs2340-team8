@@ -99,7 +99,7 @@
 
 			<form action="/risk/game" method="POST">
 				<input type="hidden" name="operation" value="GAME">
-				<a href="next.jsp">
+				<a href="map.jsp">
 					<input id='start' type="submit" value="Start!">
 					<script type="text/javascript">
          				if('<%= players.size() %>' < '3') {

@@ -96,7 +96,7 @@ import javax.servlet.http.HttpServletResponse;
 		request.setAttribute("game", game);
 		request.setAttribute("systems", systems);
         RequestDispatcher dispatcher = 
-            getServletContext().getRequestDispatcher("/next.jsp");
+            getServletContext().getRequestDispatcher("/map.jsp");
         dispatcher.forward(request,response);
     }
 	
