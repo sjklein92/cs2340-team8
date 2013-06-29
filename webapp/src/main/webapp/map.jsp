@@ -52,6 +52,9 @@
 
 <h1 align="center">It is <%= currentPlayer.getName() %>'s turn</h1>
 
+<h2 align="center"> <%= currentPlayer.getName() %> has added <%= game.getNewFleetsToBeAdded() %> fleets</h2>
+
+
 <p>&nbsp;</p>
 
 <!-- here are all of the Systems and their attributes listed below-->
@@ -77,7 +80,7 @@
 </table>
 </form>
 
-  <form id="form1" name="form1" method="put" action="/risk/update">
+  <form action="/risk/create" method="TURN">
     <p>
       <input type="submit" name="completeTurn" id="completeTurn" value="End Turn" />
     </p>
