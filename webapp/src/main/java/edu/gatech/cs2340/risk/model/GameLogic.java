@@ -24,4 +24,8 @@ public class GameLogic
 	public ArrayList<StarSystem> getAllSystems() {
 		return allSystems;
 	}
+
+    public void removePlayer() {
+        --numPlayers;
+    }
 }
