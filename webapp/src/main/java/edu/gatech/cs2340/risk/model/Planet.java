@@ -10,6 +10,8 @@ public class Planet
     private Planet prevPlanet, nextPlanet;
     private Player owner;
     private int numFleets; 
+    private static int currentName;
+    private int name;
 
     /**
     * Set's the Planet's owner and number of fleets to the variables passed in
@@ -18,6 +20,7 @@ public class Planet
     public Planet(Player owner, int numFleets) {
         this.owner = owner;
         this.numFleets = numFleets; 
+        name = ++currentName;
     }
     /**
     * Setter for the owner of this planet
@@ -44,5 +47,9 @@ public class Planet
     public int getFleets() {
         return numFleets;
     }
-    
+
+    public int getName(){
+        return name;
+    }
+
 }

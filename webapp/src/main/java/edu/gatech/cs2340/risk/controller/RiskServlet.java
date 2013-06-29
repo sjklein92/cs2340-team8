@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
     ArrayList<Player> players = new ArrayList<Player>();
     GameLogic game;
+    ArrayList<StarSystem> systems;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -98,7 +99,7 @@ import javax.servlet.http.HttpServletResponse;
         } else {
             game.update();
         }
-		ArrayList<StarSystem> systems = game.getAllSystems();
+		systems = game.getAllSystems();
 		request.setAttribute("players", players);
 		request.setAttribute("game", game);
 		request.setAttribute("systems", systems);
@@ -125,8 +126,11 @@ import javax.servlet.http.HttpServletResponse;
                                 HttpServletResponse response)
             throws IOException, ServletException {
        
+        request.setAttribute("players", players);
+        request.setAttribute("game", game);
+        request.setAttribute("systems", systems);
         RequestDispatcher dispatcher =
-            getServletContext().getRequestDispatcher("/planetStats.jsp");
+            getServletContext().getRequestDispatcher("/map.jsp");
         dispatcher.forward(request, response);
     }
 	
