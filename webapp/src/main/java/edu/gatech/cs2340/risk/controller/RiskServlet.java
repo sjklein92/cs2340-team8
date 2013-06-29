@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 	public class RiskServlet extends HttpServlet {
 
     ArrayList<Player> players = new ArrayList<Player>();
+    GameLogic game;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -46,10 +47,10 @@ import javax.servlet.http.HttpServletResponse;
         } else if (operation.equalsIgnoreCase("RANDOM")) {
 			System.out.println("Delegating to doRandom().");
 			doRandom(request, response);
-		} else if (operation.equalsIgnoreCase("GAME")) {
+		} else if (operation.equalsIgnoreCase("GAME") || operation.equalsIgnoreCase("COMPLETETURN")) {
 			System.out.println("Delegating to doGame().");
 			doGame(request, response);
-        } else if (operation.equalsIgnoreCase("PLANET_INFO")) {
+        } else if (operation.equalsIgnoreCase("STATS")) {
             System.out.println("Delegating to doPlanetStats");
             doPlanetStats(request, response);
 		} else {
@@ -92,7 +93,11 @@ import javax.servlet.http.HttpServletResponse;
                          HttpServletResponse response)
             throws IOException, ServletException {
         System.out.println("In doGame()");
-		GameLogic game = new GameLogic(players);
+        if (game == null) {
+		  game = new GameLogic(players);
+        } else {
+            game.update();
+        }
 		ArrayList<StarSystem> systems = game.getAllSystems();
 		request.setAttribute("players", players);
 		request.setAttribute("game", game);
@@ -102,6 +107,19 @@ import javax.servlet.http.HttpServletResponse;
         dispatcher.forward(request,response);
     }
 
+
+    /*
+    protected void doTurn(HttpServletRequest request) {
+        System.out.println("In doTurn()");
+        players = request.getParameter("players");
+        game.update(players);
+        request.setAttribute("players", players);
+        request.setAttribute("game", game);
+        request.setAttribute("systems", systems);
+        RequestDispatcher dispatcher = 
+            getServletContext().getRequestDispatcher("/map.jsp");
+        dispatcher.forward
+    } */
 
     protected void doPlanetStats(HttpServletRequest request,
                                 HttpServletResponse response)
@@ -115,7 +133,6 @@ import javax.servlet.http.HttpServletResponse;
     protected void doPut(HttpServletRequest request,
                          HttpServletResponse response)
             throws IOException, ServletException {
-        System.out.println("In doPut()");
         String name = (String) request.getParameter("name");
         String color = (String)  request.getParameter("color");
         int id = getId(request);
