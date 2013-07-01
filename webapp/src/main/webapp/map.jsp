@@ -7,7 +7,7 @@
 <%	
 	ArrayList<Player> players = (ArrayList<Player>) request.getAttribute("players"); 
   GameLogic game = (GameLogic) request.getAttribute("game");
-  Player currentPlayer = players.get(game.getTurn());
+  Player currentPlayer = (Player) request.getAttribute("currentPlayer");
 %>
 
 <%@ page contentType="text/html; charset=UTF-8" language="java" import="java.sql.*" errorPage="" %>
@@ -17,6 +17,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Star Galaxy</title>
+  
+  <script src="jquery.js"></script>
 
   <style type="text/css">
   .PlayerColor {
@@ -73,7 +75,8 @@
       <h1> System <%= (id+1) %></h1>
 	<% for (int k = 0; k < currentSystem.getPlanets().size(); k++) { %>
     <% Planet currentPlanet = currentSystem.getPlanets().get(k); %>
-      <form action="/risk/create/<%= id %>" method="STATS">
+      <form action="/risk/create/<%= id %>" method="POST">
+      <input type="hidden" name="operation" value="STATS" />
          	<tr>
             <td><%= currentPlanet.getName()%></td>
             <td><%= currentPlanet.getOwner().getName() %></td>
@@ -91,12 +94,10 @@
 </form>
 
   <form action="/risk/game" method="POST">
-    <p>
-      <input type="hidden" name="operation" value="COMPLETETURN" />
-      <input type="submit" name="completeTurn" id="completeTurn" value="End Turn" />
-    </p>
+  	  <input type="hidden" name="operation" value="GAME" />    
+      <input type="submit" value="End Turn" />
   </form>
-</ul>
+
 
 <input type="button" name="addNewFleets" value="Add New Fleets" />
 

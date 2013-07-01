@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns={
         "/playerSelection", // GET
-		"/game", //GAME
-        "/create", // POST 
+		"/game/*", //GAME
+        "/create/*", // POST 
         "/update/*", // PUT
         "/delete/*" // DELETE
     })
@@ -28,6 +28,8 @@ import javax.servlet.http.HttpServletResponse;
     ArrayList<Player> players = new ArrayList<Player>();
     GameLogic game;
     ArrayList<StarSystem> systems;
+    Player currentPlayer;
+    int pos = 0;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -55,10 +57,7 @@ import javax.servlet.http.HttpServletResponse;
         } else if (operation.equalsIgnoreCase("STATS")) {
             System.out.println("Delegating to doPlanetStats");
             doPlanetStats(request, response);
-		} else if (operation.equalsIgnoreCase("COMPLETETURN")) {
-            System.out.println("Delegating to doTurn()");
-            doTurn(request, response); 
-        } else if (operation.equalsIgnoreCase("ADDFLEETS")){
+		} else if (operation.equalsIgnoreCase("ADDFLEETS")){
             System.out.println("Delegating to doAddFleetsToPlanet()");
             doAddFleetsToPlanet(request, response);
         }
@@ -104,18 +103,25 @@ import javax.servlet.http.HttpServletResponse;
         System.out.println("In doGame()");
         if (game == null) {
 		  game = new GameLogic(players);
+		  System.out.println("Game == null");
         } else {
             game.update();
+			System.out.println("Turn count: " + game.getTurn());
+			System.out.println("Game != null");
         }
 		systems = game.getAllSystems();
+        currentPlayer = players.get(game.getTurn());
+        pos++;
 		request.setAttribute("players", players);
 		request.setAttribute("game", game);
 		request.setAttribute("systems", systems);
+        request.setAttribute("currentPlayer", currentPlayer);
         RequestDispatcher dispatcher = 
             getServletContext().getRequestDispatcher("/map.jsp");
         dispatcher.forward(request,response);
     }
     
+    /**
     protected void doTurn(HttpServletRequest request,
                         HttpServletResponse response)
             throws IOException, ServletException {
@@ -129,6 +135,7 @@ import javax.servlet.http.HttpServletResponse;
             getServletContext().getRequestDispatcher("/map.jsp");
         dispatcher.forward(request, response);
     } 
+    **/
 
     protected void doAddFleetsToPlanet(HttpServletRequest request,
                                     HttpServletResponse response) {
@@ -148,6 +155,7 @@ import javax.servlet.http.HttpServletResponse;
         dispatcher.forward(request, response);
     }
 	
+    /**
     protected void doPut(HttpServletRequest request,
                          HttpServletResponse response)
             throws IOException, ServletException {
@@ -161,6 +169,8 @@ import javax.servlet.http.HttpServletResponse;
             getServletContext().getRequestDispatcher("/playerSelection.jsp");
         dispatcher.forward(request,response);
     }
+    **/
+    
 
     protected void doDelete(HttpServletRequest request,
                             HttpServletResponse response)
