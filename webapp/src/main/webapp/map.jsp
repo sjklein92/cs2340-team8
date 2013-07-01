@@ -81,11 +81,18 @@
             <td><%= currentPlanet.getName()%></td>
             <td><%= currentPlanet.getOwner().getName() %></td>
             <td><%= currentPlanet.getFleets() %></td>
+            <td>
             <form action="/risk/create" method="POST">
-              <input type="submit" name="addNewFleets" value="Add New Fleets" />
               <input type="hidden" name="operation" value="ADDFLEETS" />
+              <input type="submit" id="Add New Fleets" name="addNewFleets" value="Add New Fleets" disabled/>
               <input type="hidden" name="planetID" value="<%= id %>" />
             </form>
+            </td>
+			<script type="text/javascript">
+			if ('<%= currentPlanet.getOwner().getName().equals(currentPlayer.getName()) %>') {
+          			document.getElementById('Add New Fleets').disabled = false;
+        	}
+        	</script>	
           </tr>
    
   <% } //ends inner for loop %>
