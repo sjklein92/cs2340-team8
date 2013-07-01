@@ -10,6 +10,8 @@ public class GameLogic
     private int numPlayers, turnCount;
     private ArrayList<StarSystem> allSystems;
     private ArrayList<Player> players;
+    private int newFleetsAdded;
+    private int round;
     
     public GameLogic (ArrayList<Player> players) {
     
@@ -24,7 +26,19 @@ public class GameLogic
 	}
 
     public void update () {
-        turnCount++;
+        turnCount = turnCount++;
+        if (turnCount == players.size()) {
+            turnCount = 0;
+            round++;
+        }
+        int currentPlayer = turnCount;
+        if(round != 0){
+            newFleetsAdded = players.get(currentPlayer).calcMoreFleets();
+        }
+    }
+
+    public int getNewFleetsToBeAdded() {
+        return newFleetsAdded;
     }
 
     public int getTurn() {
@@ -38,4 +52,5 @@ public class GameLogic
     public void removePlayer() {
         --numPlayers;
     }
+
 }
