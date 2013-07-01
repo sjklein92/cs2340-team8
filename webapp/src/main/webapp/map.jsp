@@ -92,9 +92,8 @@
 </form>
 
   <form action="/risk/game" method="POST">    
-      <input type="hidden" name="operation" value="GAME" />
       <input type="submit" name="completeTurn" id="completeTurn" value="End Turn" />
-    
+     <input type="hidden" name="operation" value="GAME" />
   </form>
 
 
