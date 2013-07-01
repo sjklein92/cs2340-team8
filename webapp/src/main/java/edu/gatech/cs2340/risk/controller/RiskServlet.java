@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns={
         "/playerSelection", // GET
-		"/game", //GAME
-        "/create", // POST 
+		"/game/*", //GAME
+        "/create/*", // POST 
         "/update/*", // PUT
         "/delete/*" // DELETE
     })
@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
     GameLogic game;
     ArrayList<StarSystem> systems;
     Player currentPlayer;
+    int pos = 0;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -106,7 +107,8 @@ import javax.servlet.http.HttpServletResponse;
             game.update();
         }
 		systems = game.getAllSystems();
-        currentPlayer = players.get(game.getTurn());
+        currentPlayer = players.get(pos);
+        pos++;
 		request.setAttribute("players", players);
 		request.setAttribute("game", game);
 		request.setAttribute("systems", systems);
@@ -150,6 +152,7 @@ import javax.servlet.http.HttpServletResponse;
         dispatcher.forward(request, response);
     }
 	
+    /**
     protected void doPut(HttpServletRequest request,
                          HttpServletResponse response)
             throws IOException, ServletException {
@@ -163,6 +166,8 @@ import javax.servlet.http.HttpServletResponse;
             getServletContext().getRequestDispatcher("/playerSelection.jsp");
         dispatcher.forward(request,response);
     }
+    **/
+    
 
     protected void doDelete(HttpServletRequest request,
                             HttpServletResponse response)
