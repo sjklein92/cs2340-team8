@@ -103,11 +103,14 @@ import javax.servlet.http.HttpServletResponse;
         System.out.println("In doGame()");
         if (game == null) {
 		  game = new GameLogic(players);
+		  System.out.println("Game == null");
         } else {
             game.update();
+			System.out.println("Turn count: " + game.getTurn());
+			System.out.println("Game != null");
         }
 		systems = game.getAllSystems();
-        currentPlayer = players.get(pos);
+        currentPlayer = players.get(game.getTurn());
         pos++;
 		request.setAttribute("players", players);
 		request.setAttribute("game", game);
