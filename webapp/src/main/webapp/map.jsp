@@ -84,12 +84,12 @@
             <td>
             <form action="/risk/create" method="POST">
               <input type="hidden" name="operation" value="ADDFLEETS" />
-              <input type="submit" id="Add New Fleets" name="addNewFleets" value="Add New Fleets" disabled/>
               <input type="hidden" name="planetID" value="<%= id %>" />
+              <input type="submit" id="Add New Fleets" name="addNewFleets" value="Add New Fleets" disabled/>
             </form>
             </td>
 			<script type="text/javascript">
-			if ('<%= currentPlanet.getOwner().getName().equals(currentPlayer.getName()) %>') {
+			if (<%= currentPlanet.getOwner().getName().equals(currentPlayer.getName()) %>) {
           			document.getElementById('Add New Fleets').disabled = false;
         	}
         	</script>	
