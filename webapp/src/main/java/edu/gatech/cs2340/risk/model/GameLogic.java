@@ -18,6 +18,7 @@ public class GameLogic
         this.players = players;
         numPlayers = players.size();
         allSystems = new ArrayList<StarSystem>();
+        turnCount = 0;
         
         for(Player player: players){
             allSystems.add(new StarSystem(player));
