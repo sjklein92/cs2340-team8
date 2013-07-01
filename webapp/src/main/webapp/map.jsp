@@ -4,9 +4,10 @@
 <%@ page import="edu.gatech.cs2340.risk.model.StarSystem" %>
 <%@ page import="java.util.*" %>
 
-<%ArrayList<Player> players = (ArrayList<Player>) request.getAttribute("players"); 
-  GameLogic game = (GameLogic) request.getAttribute("game");
-   Player currentPlayer = players.get(game.getTurn() % players.size());
+<%	
+	ArrayList<Player> players = (ArrayList<Player>) request.getAttribute("players"); 
+  	GameLogic game = (GameLogic) request.getAttribute("game");
+   	Player currentPlayer = players.get(game.getTurn() % players.size());
 %>
 
 <%@ page contentType="text/html; charset=UTF-8" language="java" import="java.sql.*" errorPage="" %>
@@ -38,7 +39,6 @@
   <!-- This for loop is pretty cool, it creates the table based on how
   		many people are playing -->
   <% for (int id = 0; id < players.size(); id++) { %>
-		<% Player player = players.get(id); %>
       <form action="/risk/playerSelection/<%= id %>" method="POST">
       <tr>
         <td><%= players.get(id).getName() %></td>
@@ -52,39 +52,35 @@
 
 <h1 align="center">It is <%= currentPlayer.getName() %>'s turn</h1>
 
+<h2 align="center"> <%= currentPlayer.getName() %> has added <%= game.getNewFleetsToBeAdded() %> fleets</h2>
+
+
 <p>&nbsp;</p>
 
 <!-- here are all of the Systems and their attributes listed below-->
-<h1>System 1: </h1>
-<p>Mars</p><ul>
-  <p>numFleets, <span class="PlayerColor">owner</span></p>
-</ul>
+<% for (int id = 0; id < game.getAllSystems().size(); id++) { %>
+	<% StarSystem currentSystem = game.getAllSystems().get(id); %>
+    <table width="306" border="1" align="center">
+      <tr>
+        <th width="66" scope="col">Planet Name</th>
+        <th width="55" scope="col">Owner</th>
+        <th width="62" scope="col">Number Of Fleets</th>
+      </tr>
+      <h1> System <%= (id+1) %></h1>
+	<% for (int k = 0; k < currentSystem.getPlanets().size(); k++) { %>
+    <% Planet currentPlanet = currentSystem.getPlanets().get(k); %>
+      <form action="/risk/create/<%= id %>" method="STATS">
+         	<tr>
+            <td><%= currentPlanet.getName()%></td>
+            <td><%= currentPlanet.getOwner().getName() %></td>
+            <td><%= currentPlanet.getFleets() %></td>
+          </tr>
+  <% } //ends inner for loop %>
+  <% } //Ends outer loop %>
+</table>
+</form>
 
-<h1>System 2: </h1>
-<p>Mars</p><ul>
-  <p>numFleets, <span class="PlayerColor">owner</span></p>
-</ul>
-
-<h1>System 3: </h1>
-<p>Mars</p><ul>
-  <p>numFleets, <span class="PlayerColor">owner</span></p>
-</ul>
-
-<h1>System 4: </h1>
-<p>Mars</p><ul>
-  <p>numFleets, <span class="PlayerColor">owner</span></p>
-</ul>
-
-<h1>System 5: </h1>
-<p>Mars</p><ul>
-  <p>numFleets, <span class="PlayerColor">owner</span></p>
-</ul>
-
-<h1>System 6: </h1>
-<p>Mars</p><ul>
-  <p>numFleets, <span class="PlayerColor">owner</span></p>
-  <p>&nbsp;</p>
-  <form id="form1" name="form1" method="put" action="/risk/update">
+  <form action="/risk/create" method="TURN">
     <p>
       <input type="submit" name="completeTurn" id="completeTurn" value="End Turn" />
     </p>
