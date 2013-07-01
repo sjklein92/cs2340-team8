@@ -107,20 +107,6 @@ import javax.servlet.http.HttpServletResponse;
         dispatcher.forward(request,response);
     }
 
-
-    /*
-    protected void doTurn(HttpServletRequest request) {
-        System.out.println("In doTurn()");
-        players = request.getParameter("players");
-        game.update(players);
-        request.setAttribute("players", players);
-        request.setAttribute("game", game);
-        request.setAttribute("systems", systems);
-        RequestDispatcher dispatcher = 
-            getServletContext().getRequestDispatcher("/map.jsp");
-        dispatcher.forward
-    } */
-
     protected void doPlanetStats(HttpServletRequest request,
                                 HttpServletResponse response)
             throws IOException, ServletException {
@@ -133,6 +119,7 @@ import javax.servlet.http.HttpServletResponse;
     protected void doPut(HttpServletRequest request,
                          HttpServletResponse response)
             throws IOException, ServletException {
+        System.out.println("In doPut()");
         String name = (String) request.getParameter("name");
         String color = (String)  request.getParameter("color");
         int id = getId(request);
