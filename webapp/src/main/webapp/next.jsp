@@ -5,6 +5,8 @@
 <%@ page import="java.util.*" %>
 
 
+
+
 <% ArrayList<Player> players = 
     (ArrayList<Player>) request.getAttribute("players"); 
    
@@ -62,6 +64,9 @@
 			</tr>
 		</table>
 
+			
+
+
 		<script type="text/javascript">
 			for (var i = 1; i < <%= players.size() %>; i++) {
 				$('#starSystem1').clone().appendTo('#' + i);
@@ -115,7 +120,8 @@
 			
 		</script>
 
-
+		<form action="//servlet method here" method="POST">
+		<input id='quit' type="submit" value="End Turn!">
 
     </body>
 </html>

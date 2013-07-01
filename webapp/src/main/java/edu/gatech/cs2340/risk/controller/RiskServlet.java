@@ -25,7 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 	public class RiskServlet extends HttpServlet {
 
     ArrayList<Player> players = new ArrayList<Player>();
-
+    GameLogic game;
+    ArrayList<StarSystem> systems;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -47,10 +48,16 @@ import javax.servlet.http.HttpServletResponse;
         } else if (operation.equalsIgnoreCase("RANDOM")) {
 			System.out.println("Delegating to doRandom().");
 			doRandom(request, response);
-		} else if (operation.equalsIgnoreCase("GAME")) {
+		} else if (operation.equalsIgnoreCase("GAME") || operation.equalsIgnoreCase("COMPLETETURN")) {
 			System.out.println("Delegating to doGame().");
 			doGame(request, response);
-		} else {
+        } else if (operation.equalsIgnoreCase("STATS")) {
+            System.out.println("Delegating to doPlanetStats");
+            doPlanetStats(request, response);
+		} else if (operation.equalsIgnoreCase("TURN")) {
+            System.out.println("Delegating to doPlanetStats");
+            doTurn(request, response); 
+        } else {
             String name = request.getParameter("name");
             String color = request.getParameter("color");
             players.add(players.size(), new Player(name, color));
@@ -90,16 +97,45 @@ import javax.servlet.http.HttpServletResponse;
                          HttpServletResponse response)
             throws IOException, ServletException {
         System.out.println("In doGame()");
-		GameLogic game = new GameLogic(players);
-		ArrayList<StarSystem> systems = game.getAllSystems();
+        if (game == null) {
+		  game = new GameLogic(players);
+        } else {
+            game.update();
+        }
+		systems = game.getAllSystems();
 		request.setAttribute("players", players);
 		request.setAttribute("game", game);
 		request.setAttribute("systems", systems);
         RequestDispatcher dispatcher = 
-            getServletContext().getRequestDispatcher("/next.jsp");
+            getServletContext().getRequestDispatcher("/map.jsp");
         dispatcher.forward(request,response);
     }
-	
+    
+    protected void doTurn(HttpServletRequest request,
+                        HttpServletResponse response)
+            throws IOException, ServletException {
+        System.out.println("In doTurn()");
+        game.update();
+        request.setAttribute("players", players);
+        request.setAttribute("game", game);
+        request.setAttribute("systems", systems);
+       // players = request.getParameter("players");
+        RequestDispatcher dispatcher = 
+            getServletContext().getRequestDispatcher("/map.jsp");
+        dispatcher.forward(request, response);
+    } 
+
+    protected void doPlanetStats(HttpServletRequest request,
+                                HttpServletResponse response)
+            throws IOException, ServletException {
+       
+        request.setAttribute("players", players);
+        request.setAttribute("game", game);
+        request.setAttribute("systems", systems);
+        RequestDispatcher dispatcher =
+            getServletContext().getRequestDispatcher("/map.jsp");
+        dispatcher.forward(request, response);
+    }
 	
     protected void doPut(HttpServletRequest request,
                          HttpServletResponse response)
@@ -132,13 +168,6 @@ import javax.servlet.http.HttpServletResponse;
         // Strip off the leading slash, e.g. "/2" becomes "2"
         String idStr = uri.substring(1, uri.length()); 
         return Integer.parseInt(idStr);
-    }
-
-    protected void doAttack(HttpServletRequest request, 
-        HttpServletResponse response) {
-        // TODO
-    }
-
-    
+    }    
 
 }
