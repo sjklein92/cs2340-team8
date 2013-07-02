@@ -41,6 +41,7 @@
     <th width="62" scope="col">Total Fleets</th>
     <th width="95" scope="col">Total Planets Owned</th>
   </tr>
+  
   <!-- This for loop is pretty cool, it creates the table based on how
   		many people are playing -->
   <% for (int id = 0; id < players.size(); id++) { %>
@@ -73,6 +74,7 @@
         <th width="62" scope="col">Number Of Fleets</th>
       </tr>
       <h1> System <%= (id+1) %></h1>
+      
 	<% for (int k = 0; k < currentSystem.getPlanets().size(); k++) { %>
     <% Planet currentPlanet = currentSystem.getPlanets().get(k); %>
       <form action="/risk/create/<%= id %>" method="POST">
@@ -81,21 +83,28 @@
             <td><%= currentPlanet.getName()%></td>
             <td><%= currentPlanet.getOwner().getName() %></td>
             <td><%= currentPlanet.getFleets() %></td>
+            
+            <!-- So here are all of the buttons, the javascript enables them-->
             <td>
             <form action="/risk/create" method="POST">
               <input type="hidden" name="operation" value="ADDFLEETS" />
               <input type="hidden" name="planetID" value="<%= id %>" />
-              <input type="submit" id="Add New Fleets" name="addNewFleets" value="Add New Fleets" disabled/>
+              <input type="submit" id="Add New Fleets" name="addNewFleets" value="Add New Fleets"/>
             </form>
             </td>
+            <!-- first this disables all elements when page is loaded -->
+            <!-- Had to throw the for loop in here to enable all of the elements -->
 			<script type="text/javascript">
-			if (<%= currentPlanet.getOwner().getName().equals(currentPlayer.getName()) %>) {
-          			document.getElementById('Add New Fleets').disabled = false;
-        	}
+			var fleetButtons = document.getElementsByName("addNewFleets");
+			for (var i=0; i<fleetButtons.length; i++) {
+				if (<%= currentPlanet.getOwner().getName().equals(currentPlayer.getName()) %>) {
+          			fleetButtons[i].disabled = false;
+        		}
+				else { fleetButtons[i].disabled = true; }
+			}
         	</script>	
-          </tr>
-   
-  <% } //ends inner for loop %>
+          </tr>   
+  	<% } //ends inner for loop %>
   <% } //Ends outer loop %>
 </table>
 </form>

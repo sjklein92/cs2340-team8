@@ -29,7 +29,6 @@ import javax.servlet.http.HttpServletResponse;
     GameLogic game;
     ArrayList<StarSystem> systems;
     Player currentPlayer;
-    int pos = 0;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -111,7 +110,6 @@ import javax.servlet.http.HttpServletResponse;
         }
 		systems = game.getAllSystems();
         currentPlayer = players.get(game.getTurn());
-        pos++;
 		request.setAttribute("players", players);
 		request.setAttribute("game", game);
 		request.setAttribute("systems", systems);
