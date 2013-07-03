@@ -86,8 +86,9 @@
 </table>
 </form>
 
-  <form action="/risk/create" method="TURN">
+  <form action="/risk/game" method="POST">
     <p>
+	  <input type="hidden" name="operation" value="COMPLETETURN">
       <input type="submit" name="completeTurn" id="completeTurn" value="End Turn" />
     </p>
   </form>
