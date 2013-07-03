@@ -108,8 +108,8 @@ import javax.servlet.http.HttpServletResponse;
           for(int i = 0; i < systems.size(); i++){
             for(int j = 0; j < 5; j++){
                 planets.add(systems.get(i).getPlanets().get(j));
-        }
-    }
+            }
+         }
 		  System.out.println("Game == null");
         } else {
             game.update();
@@ -145,18 +145,21 @@ import javax.servlet.http.HttpServletResponse;
 
     protected void doAddFleetsToPlanet(HttpServletRequest request,
                                     HttpServletResponse response) 
-                throws IOException, ServletException{
+                throws IOException, ServletException {
 
         System.out.println("In doAddFleetsToPlanet()");
         int id = Integer.parseInt(request.getParameter("planetID"));
+        String currentPlayerName = request.getParameter("currentPlayer");
         for (int i=0; i < planets.size(); i++ ) {
-            if (i == id)
-                planets.get(i).setFleets(planets.get(i).getFleets() + 1);
+            if (currentPlayerName.equals(currentPlayer.getName())) {
+                if (i == id) {
+                    planets.get(i).setFleets(planets.get(i).getFleets() + 1);
+                    game.decrementFleets();
+                }
+            }
 
         }
-        String currentPlayerName = request.getParameter("currentPlayer");
         currentPlayer = players.get(game.getTurn());
-        game.decrementFleets();
         request.setAttribute("players", players);
         request.setAttribute("game", game);
         request.setAttribute("systems", systems);
