@@ -7,7 +7,7 @@
 <%	
 	ArrayList<Player> players = (ArrayList<Player>) request.getAttribute("players"); 
   GameLogic game = (GameLogic) request.getAttribute("game");
-   Player currentPlayer = players.get(game.getTurn() % players.size());
+  Player currentPlayer = (Player) request.getAttribute("currentPlayer");
 %>
 
 <%@ page contentType="text/html; charset=UTF-8" language="java" import="java.sql.*" errorPage="" %>
@@ -16,7 +16,9 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>Untitled Document</title>
+  <title>Star Galaxy</title>
+  
+  <script src="jquery.js"></script>
 
   <style type="text/css">
   .PlayerColor {
@@ -39,6 +41,7 @@
     <th width="62" scope="col">Total Fleets</th>
     <th width="95" scope="col">Total Planets Owned</th>
   </tr>
+  
   <!-- This for loop is pretty cool, it creates the table based on how
   		many people are playing -->
   <% for (int id = 0; id < players.size(); id++) { %>
@@ -71,28 +74,53 @@
         <th width="62" scope="col">Number Of Fleets</th>
       </tr>
       <h1> System <%= (id+1) %></h1>
+      
 	<% for (int k = 0; k < currentSystem.getPlanets().size(); k++) { %>
     <% Planet currentPlanet = currentSystem.getPlanets().get(k); %>
-      <form action="/risk/create/<%= id %>" method="STATS">
+      <form action="/risk/create/<%= id %>" method="POST">
+      <input type="hidden" name="operation" value="STATS" />
          	<tr>
             <td><%= currentPlanet.getName()%></td>
             <td><%= currentPlanet.getOwner().getName() %></td>
             <td><%= currentPlanet.getFleets() %></td>
-            <input type="button" name="addNewFleets" value="Add New Fleets" />
-          </tr>
-   
-  <% } //ends inner for loop %>
+            
+            <!-- So here are all of the buttons, the javascript enables them-->
+            <td>
+            <form action="/risk/create" method="POST">
+              <input type="hidden" name="operation" value="ADDFLEETS" />
+              <input type="hidden" name="planetID" value="<%= id %>" />
+              <input type="submit" id="Add New Fleets" name="addNewFleets" value="Add New Fleets"/>
+            </form>
+            </td>
+            <!-- first this disables all elements when page is loaded -->
+            <!-- Had to throw the for loop in here to enable all of the elements -->
+			<script type="text/javascript">
+			var fleetButtons = document.getElementsByName("addNewFleets");
+			for (var i=0; i<fleetButtons.length; i++) {
+				if (<%= currentPlanet.getOwner().getName().equals(currentPlayer.getName()) %>) {
+          			fleetButtons[i].disabled = false;
+        		}
+				else { fleetButtons[i].disabled = true; }
+			}
+        	</script>	
+          </tr>   
+  	<% } //ends inner for loop %>
   <% } //Ends outer loop %>
 </table>
 </form>
 
   <form action="/risk/game" method="POST">
+<<<<<<< HEAD
     <p>
 	  <input type="hidden" name="operation" value="COMPLETETURN">
       <input type="submit" name="completeTurn" id="completeTurn" value="End Turn" />
     </p>
+=======
+  	  <input type="hidden" name="operation" value="GAME" />    
+      <input type="submit" value="End Turn" />
+>>>>>>> 52e60eb7e0e9d89c1e6b38532111bc6a157440bd
   </form>
-</ul>
+
 
 <input type="button" name="addNewFleets" value="Add New Fleets" />
 
