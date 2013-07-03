@@ -121,6 +121,10 @@ public class Player {
 		numPlanets = newNumPlanets;
 	}
 
+	public void setName(String newName) {
+		name = newName;
+	}
+
 
 
 

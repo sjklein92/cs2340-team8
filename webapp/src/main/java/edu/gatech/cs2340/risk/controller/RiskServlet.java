@@ -29,6 +29,8 @@ import javax.servlet.http.HttpServletResponse;
     GameLogic game;
     ArrayList<StarSystem> systems;
     Player currentPlayer;
+    ArrayList<Planet> planets = new ArrayList<Planet>(15);
+    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -102,18 +104,24 @@ import javax.servlet.http.HttpServletResponse;
         System.out.println("In doGame()");
         if (game == null) {
 		  game = new GameLogic(players);
+          systems = game.getAllSystems();
+          for(int i = 0; i < systems.size(); i++){
+            for(int j = 0; j < 5; j++){
+                planets.add(systems.get(i).getPlanets().get(j));
+        }
+    }
 		  System.out.println("Game == null");
         } else {
             game.update();
 			System.out.println("Turn count: " + game.getTurn());
 			System.out.println("Game != null");
         }
-		systems = game.getAllSystems();
         currentPlayer = players.get(game.getTurn());
 		request.setAttribute("players", players);
 		request.setAttribute("game", game);
 		request.setAttribute("systems", systems);
         request.setAttribute("currentPlayer", currentPlayer);
+        request.setAttribute("planets", planets);
         RequestDispatcher dispatcher = 
             getServletContext().getRequestDispatcher("/map.jsp");
         dispatcher.forward(request,response);
@@ -136,10 +144,29 @@ import javax.servlet.http.HttpServletResponse;
     **/
 
     protected void doAddFleetsToPlanet(HttpServletRequest request,
-                                    HttpServletResponse response) {
+                                    HttpServletResponse response) 
+                throws IOException, ServletException{
+
         System.out.println("In doAddFleetsToPlanet()");
-        // TODO
+        int id = Integer.parseInt(request.getParameter("planetID"));
+        for (int i=0; i < planets.size(); i++ ) {
+            if (i == id)
+                planets.get(i).setFleets(planets.get(i).getFleets() + 1);
+
+        }
+        String currentPlayerName = request.getParameter("currentPlayer");
+        currentPlayer = players.get(game.getTurn());
+        request.setAttribute("players", players);
+        request.setAttribute("game", game);
+        request.setAttribute("systems", systems);
+        request.setAttribute("currentPlayer", currentPlayer);
+        request.setAttribute("planets", planets);
+        RequestDispatcher dispatcher =
+            getServletContext().getRequestDispatcher("/map.jsp");
+                dispatcher.forward(request, response);
+        
     }
+
 
     protected void doPlanetStats(HttpServletRequest request,
                                 HttpServletResponse response)
