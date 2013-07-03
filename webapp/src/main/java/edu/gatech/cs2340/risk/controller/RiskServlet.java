@@ -156,6 +156,7 @@ import javax.servlet.http.HttpServletResponse;
         }
         String currentPlayerName = request.getParameter("currentPlayer");
         currentPlayer = players.get(game.getTurn());
+        game.decrementFleets();
         request.setAttribute("players", players);
         request.setAttribute("game", game);
         request.setAttribute("systems", systems);

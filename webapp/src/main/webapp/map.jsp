@@ -59,7 +59,7 @@
 
 <h1 align="center">It is <%= currentPlayer.getName() %>'s turn</h1>
 
-<h2 align="center"><%= currentPlayer.getName() %> has added <%=  game.getNewFleetsToBeAdded() %> fleets</h2>
+<h2 align="center"><%= currentPlayer.getName() %> has <%=  game.getNewFleetsToBeAdded() %> fleets left to add</h2>
 
 
 <p>&nbsp;</p>
