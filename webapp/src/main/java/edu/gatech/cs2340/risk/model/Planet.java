@@ -52,4 +52,8 @@ public class Planet
         return name;
     }
 
+    public int getCurrentName(){
+        return currentName;
+    }
+
 }
