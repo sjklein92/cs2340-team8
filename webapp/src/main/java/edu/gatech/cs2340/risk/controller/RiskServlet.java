@@ -105,6 +105,7 @@ import javax.servlet.http.HttpServletResponse;
         if (game == null) {
 		  game = new GameLogic(players);
           systems = game.getAllSystems();
+          // Creates the arraylist of planets
           for(int i = 0; i < systems.size(); i++){
             for(int j = 0; j < 5; j++){
                 planets.add(systems.get(i).getPlanets().get(j));
