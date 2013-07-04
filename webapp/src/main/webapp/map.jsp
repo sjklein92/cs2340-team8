@@ -112,7 +112,7 @@
 </form>
   <form action="/risk/game" method="POST">
   	  <input type="hidden" name="operation" value="GAME" />    
-      <input type="submit" value="End Turn" />
+      <input type="submit" id="End Turn" value="End Turn" disabled/>
   </form>
 
 <input type="button" name="addNewFleets" value="Add New Fleets" />
@@ -123,6 +123,7 @@
         for (var i=0; i<document.getElementsByName("addNewFleets").length; i++){
           document.getElementsByName("addNewFleets")[i].style.display = "none";
         }
+		document.getElementById("End Turn").disabled = false;
 	 }
   </script>
 
