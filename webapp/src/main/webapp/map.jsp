@@ -64,6 +64,7 @@
 
 <p>&nbsp;</p>
 
+<% int j=0; %>
 <!-- here are all of the Systems and their attributes listed below-->
 <% for (int id = 0; id < game.getAllSystems().size(); id++) { %>
 	<% StarSystem currentSystem = game.getAllSystems().get(id); %>
@@ -75,7 +76,7 @@
       </tr>
       <h1> System <%= (id+1) %></h1>
       
-	<% for (int k=0; k < currentSystem.getPlanets().size(); k++) { %>
+	<% for (int k=0; k < currentSystem.getPlanets().size(); k++,j++) { %>
     <% Planet currentPlanet = currentSystem.getPlanets().get(k); %>
       <form action="/risk/game" method="POST">
          	<tr>
@@ -85,16 +86,13 @@
             
             <!-- So here are all of the buttons, the javascript enables them-->
             <td>
-            <form action="/risk/create/<%= k %>" method="POST">
+            <form action="/risk/create/<%= j %>" method="POST">
               <input type="hidden" name="operation" value="ADDFLEETS" />
               <input type="hidden" id="planetID" value="<%= currentPlanet.getOwner().getName()%>" name="currentPlayer" />
-              <input type="hidden" id="planetID" name="planetID" value="<%= k %>" />
-              <input type="submit" id="Add New Fleets" name="addNewFleets" value="Add New Fleets"/>
+              <input type="hidden" id="planetID" name="planetID" value="<%= j %>" />
+              <input type="submit" id="Add New Fleets" name="addNewFleets" value="Add New Fleets" disabled/>
             </form>
-            
-            </td>
-          </tr>   
-          <!-- first this disables all elements when page is loaded -->
+            <!-- first this disables all elements when page is loaded -->
             <!-- Had to throw the for loop in here to enable all of the elements -->
 			<script type="text/javascript">
 			var fleetButtons = document.getElementsByName("addNewFleets");
@@ -102,9 +100,11 @@
 				if (<%= currentPlanet.getOwner().getName().equals(currentPlayer.getName()) %>) {
           			fleetButtons[i].disabled = false;
         		}
-				else { fleetButtons[i].disabled = true; }
 			}
         	</script>	
+            </td>
+          </tr>   
+         
   	<% } //ends inner for loop %>
   <% } //Ends outer loop %>
 </table>
@@ -112,7 +112,7 @@
 </form>
   <form action="/risk/game" method="POST">
   	  <input type="hidden" name="operation" value="GAME" />    
-      <input type="submit" value="End Turn" />
+      <input type="submit" id="End Turn" value="End Turn" disabled/>
   </form>
 
 <input type="button" name="addNewFleets" value="Add New Fleets" />
@@ -123,6 +123,7 @@
         for (var i=0; i<document.getElementsByName("addNewFleets").length; i++){
           document.getElementsByName("addNewFleets")[i].style.display = "none";
         }
+		document.getElementById("End Turn").disabled = false;
 	 }
   </script>
 
