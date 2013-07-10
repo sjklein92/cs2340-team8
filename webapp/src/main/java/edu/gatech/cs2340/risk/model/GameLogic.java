@@ -42,6 +42,10 @@ public class GameLogic
         return newFleetsAdded;
     }
 
+    public void decrementFleets() {
+        newFleetsAdded--;
+    }
+
     public int getTurn() {
         return turnCount;
     }

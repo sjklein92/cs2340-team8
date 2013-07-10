@@ -28,7 +28,12 @@ import javax.servlet.http.HttpServletResponse;
     ArrayList<Player> players = new ArrayList<Player>();
     ArrayList<StarSystem> systems;
     Player currentPlayer;
+<<<<<<< HEAD
 	GameLogic game;
+=======
+    ArrayList<Planet> planets = new ArrayList<Planet>(15);
+    
+>>>>>>> d17780b2b8f195fae04d0ed5c768e87d5bf81c45
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -102,18 +107,25 @@ import javax.servlet.http.HttpServletResponse;
         System.out.println("In doGame()");
         if (game == null) {
 		  game = new GameLogic(players);
+          systems = game.getAllSystems();
+          // Creates the arraylist of planets
+          for(int i = 0; i < systems.size(); i++){
+            for(int j = 0; j < 5; j++){
+                planets.add(systems.get(i).getPlanets().get(j));
+            }
+         }
 		  System.out.println("Game == null");
         } else {
             game.update();
 			System.out.println("Turn count: " + game.getTurn());
 			System.out.println("Game != null");
         }
-		systems = game.getAllSystems();
         currentPlayer = players.get(game.getTurn());
 		request.setAttribute("players", players);
 		request.setAttribute("game", game);
 		request.setAttribute("systems", systems);
         request.setAttribute("currentPlayer", currentPlayer);
+        request.setAttribute("planets", planets);
         RequestDispatcher dispatcher = 
             getServletContext().getRequestDispatcher("/map.jsp");
         dispatcher.forward(request,response);
@@ -136,10 +148,33 @@ import javax.servlet.http.HttpServletResponse;
     **/
 
     protected void doAddFleetsToPlanet(HttpServletRequest request,
-                                    HttpServletResponse response) {
+                                    HttpServletResponse response) 
+                throws IOException, ServletException {
+
         System.out.println("In doAddFleetsToPlanet()");
-        // TODO
+        int id = Integer.parseInt(request.getParameter("planetID"));
+        String currentPlayerName = request.getParameter("currentPlayer");
+        for (int i=0; i < planets.size(); i++ ) {
+            if (currentPlayerName.equals(currentPlayer.getName())) {
+                if (i == id) {
+                    planets.get(i).setFleets(planets.get(i).getFleets() + 1);
+                    game.decrementFleets();
+                }
+            }
+
+        }
+        currentPlayer = players.get(game.getTurn());
+        request.setAttribute("players", players);
+        request.setAttribute("game", game);
+        request.setAttribute("systems", systems);
+        request.setAttribute("currentPlayer", currentPlayer);
+        request.setAttribute("planets", planets);
+        RequestDispatcher dispatcher =
+            getServletContext().getRequestDispatcher("/map.jsp");
+                dispatcher.forward(request, response);
+        
     }
+
 
     protected void doPlanetStats(HttpServletRequest request,
                                 HttpServletResponse response)
