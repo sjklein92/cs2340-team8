@@ -98,9 +98,11 @@
 			var fleetButtons = document.getElementsByName("addNewFleets");
 			for (var i=0; i<fleetButtons.length; i++) {
 				if (<%= currentPlanet.getOwner().getName().equals(currentPlayer.getName()) %>) {
-          			fleetButtons[i].disabled = false;
+					fleetButtons[i].disabled = false;
         		}
-				else { fleetButtons[i].disabled = true; }
+				else { 
+					fleetButtons[i].disabled = true; 
+				}
 			}
         	</script>	
           </tr>   
@@ -110,19 +112,9 @@
 </form>
 
   <form action="/risk/game" method="POST">
-<<<<<<< HEAD
-    <p>
-	  <input type="hidden" name="operation" value="COMPLETETURN">
-      <input type="submit" name="completeTurn" id="completeTurn" value="End Turn" />
-    </p>
-=======
   	  <input type="hidden" name="operation" value="GAME" />    
       <input type="submit" value="End Turn" />
->>>>>>> 52e60eb7e0e9d89c1e6b38532111bc6a157440bd
   </form>
-
-
-<input type="button" name="addNewFleets" value="Add New Fleets" />
 
  <script type="text/javascript">
 
