@@ -28,12 +28,9 @@ import javax.servlet.http.HttpServletResponse;
     ArrayList<Player> players = new ArrayList<Player>();
     ArrayList<StarSystem> systems;
     Player currentPlayer;
-<<<<<<< HEAD
 	GameLogic game;
-=======
     ArrayList<Planet> planets = new ArrayList<Planet>(15);
     
->>>>>>> d17780b2b8f195fae04d0ed5c768e87d5bf81c45
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
