@@ -100,12 +100,9 @@
 				if (<%= currentPlanet.getOwner().getName().equals(currentPlayer.getName()) %>) {
 					fleetButtons[i].disabled = false;
         		}
-<<<<<<< HEAD
 				else { 
 					fleetButtons[i].disabled = true; 
 				}
-=======
->>>>>>> d17780b2b8f195fae04d0ed5c768e87d5bf81c45
 			}
         	</script>	
             </td>
@@ -121,12 +118,9 @@
       <input type="submit" id="End Turn" value="End Turn" disabled/>
   </form>
 
-<<<<<<< HEAD
-=======
 <input type="button" name="addNewFleets" value="Add New Fleets" />
 
 <!-- keeps the buttons from displaying if the player has no fleets to add -->
->>>>>>> d17780b2b8f195fae04d0ed5c768e87d5bf81c45
  <script type="text/javascript">
       if (<%= game.getNewFleetsToBeAdded()%> == 0) {
         for (var i=0; i<document.getElementsByName("addNewFleets").length; i++){
