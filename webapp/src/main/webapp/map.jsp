@@ -106,7 +106,28 @@
 			}
         	</script>	
             </td>
-          </tr>   
+            <form action="/risk/create/<%= j %>" method="POST">
+            <td>
+              <input type="hidden" name="operation" value="ATTACK" />
+              <input type="hidden" id="planetID" value="<%= currentPlanet.getOwner().getName()%>" name="currentPlayer" />
+              <input type="hidden" id="planetID" name="planetID" value="<%= j %>" />
+              <input onclick="attackPrompt(planetID)" type="submit" id="Attack" name="attackButtons" value="Attack" disabled/>
+            </td>
+            <td>
+              <select name="viablePlanets" disabled>
+               <% for (StarSystem system : game.getAllSystems()) {
+                    for (Planet planet : system.getPlanets()) {
+                      if (planet.getOwner().equals(currentPlayer)) {%>
+                        <option value="<%= planet.getName()%>"><%=planet.getName()%></option>
+                      <%}
+                  }
+               }%>
+
+                
+              </select>
+            </td>
+            </form>
+          </tr>  
          
   	<% } //ends inner for loop %>
   <% } //Ends outer loop %>
@@ -118,17 +139,23 @@
       <input type="submit" id="End Turn" value="End Turn" disabled/>
   </form>
 
-<input type="button" name="addNewFleets" value="Add New Fleets" />
-
 <!-- keeps the buttons from displaying if the player has no fleets to add -->
+<!-- also enables the attack buttons -->
  <script type="text/javascript">
       if (<%= game.getNewFleetsToBeAdded()%> == 0) {
         for (var i=0; i<document.getElementsByName("addNewFleets").length; i++){
-          document.getElementsByName("addNewFleets")[i].style.display = "none";
+          document.getElementsByName("addNewFleets")[i].disabled = true;
+        }
+		for (var i=0; i<document.getElementsByName("attackButtons").length; i++){
+          document.getElementsByName("attackButtons")[i].disabled = false;
+          document.getElementsByName("viablePlanets")[i].disabled = false;
         }
 		document.getElementById("End Turn").disabled = false;
 	 }
+
+
   </script>
 
+  <script src="attackScript.js"></script>
 </body>
 </html>

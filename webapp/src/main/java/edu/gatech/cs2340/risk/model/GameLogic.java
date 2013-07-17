@@ -58,4 +58,8 @@ public class GameLogic
         --numPlayers;
     }
 
+    public int getRound() {
+        return round;
+    }
+
 }
