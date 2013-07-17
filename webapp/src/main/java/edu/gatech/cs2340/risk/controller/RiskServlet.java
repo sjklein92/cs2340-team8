@@ -187,7 +187,6 @@ import javax.servlet.http.HttpServletResponse;
         int fleetAmount = Integer.parseInt(request.getParameter("fleetAmount"));
         String currentPlayerName = request.getParameter("currentPlayer");
 
-        66
         for (int i=0; i < planets.size(); i++ ) {
             if (currentPlayerName.equals(currentPlayer.getName())) {
                 if (i == id) {
