@@ -61,6 +61,9 @@ import javax.servlet.http.HttpServletResponse;
 		} else if (operation.equalsIgnoreCase("ADDFLEETS")){
             System.out.println("Delegating to doAddFleetsToPlanet()");
             doAddFleetsToPlanet(request, response);
+        } else if (operation.equalsIgnoreCase("ATTACK")){
+            System.out.println("Delegating to doAttack()");
+            doAttack(request, response);
         }
         else {
             String name = request.getParameter("name");
@@ -156,6 +159,38 @@ import javax.servlet.http.HttpServletResponse;
                 if (i == id) {
                     planets.get(i).setFleets(planets.get(i).getFleets() + 1);
                     game.decrementFleets();
+                }
+            }
+
+        }
+        currentPlayer = players.get(game.getTurn());
+        request.setAttribute("players", players);
+        request.setAttribute("game", game);
+        request.setAttribute("systems", systems);
+        request.setAttribute("currentPlayer", currentPlayer);
+        request.setAttribute("planets", planets);
+        RequestDispatcher dispatcher =
+            getServletContext().getRequestDispatcher("/map.jsp");
+                dispatcher.forward(request, response);
+        
+    }
+
+    // Still the same as the doAddFleetsToPlanet method
+    // Just wanted to get rid of null pointer exception to test
+    protected void doAttack(HttpServletRequest request,
+                                    HttpServletResponse response) 
+                throws IOException, ServletException {
+
+        System.out.println("In doAttack()");
+        int id = Integer.parseInt(request.getParameter("planetID"));
+        int attackPlanet = Integer.parseInt(request.getParameter("viablePlanets"));
+        int fleetAmount = Integer.parseInt(request.getParameter("fleetAmount"));
+        String currentPlayerName = request.getParameter("currentPlayer");
+
+        for (int i=0; i < planets.size(); i++ ) {
+            if (currentPlayerName.equals(currentPlayer.getName())) {
+                if (i == id) {
+                    break;
                 }
             }
 
