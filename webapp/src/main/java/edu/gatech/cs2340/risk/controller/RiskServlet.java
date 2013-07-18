@@ -182,12 +182,15 @@ import javax.servlet.http.HttpServletResponse;
                 throws IOException, ServletException {
 
         System.out.println("In doAttack()");
-        int id = Integer.parseInt(request.getParameter("planetID"));
-        int attackPlanetID = Integer.parseInt(request.getParameter("viablePlanets"));
-        int fleetAmount = Integer.parseInt(request.getParameter("fleetAmount"));
-        String currentPlayerName = request.getParameter("currentPlayer");
-        game.attackPlanet(planets.get(id), planets.get(attackPlanetID-1), fleetAmount);
-            
+        try {
+            int id = Integer.parseInt(request.getParameter("planetID"));
+            int attackPlanetID = Integer.parseInt(request.getParameter("viablePlanets"));
+            int fleetAmount = Integer.parseInt(request.getParameter("fleetAmount"));
+            String currentPlayerName = request.getParameter("currentPlayer");
+            game.attackPlanet(planets.get(id), planets.get(attackPlanetID-1), fleetAmount);
+        } catch (NumberFormatException e) {
+            System.err.println("Caught NumberFormatException: " + e.getMessage());
+        }
         currentPlayer = players.get(game.getTurn());
         request.setAttribute("players", players);
         request.setAttribute("game", game);
