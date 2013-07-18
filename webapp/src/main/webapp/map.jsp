@@ -56,7 +56,7 @@
   <% } %>
 </table>
 
-
+<p align="center"><%= game.getLog() %></p>
 <h1 align="center">It is <%= currentPlayer.getName() %>'s turn</h1>
 
 <h2 align="center"><%= currentPlayer.getName() %> has <%=  game.getNewFleetsToBeAdded() %> fleets left to add</h2>
@@ -107,8 +107,8 @@
 			}
         	</script>	
             </td>
-            <form action="/risk/create/<%= j %>" method="POST">
             <td>
+              <form action="/risk/game" method="POST">
               <input type="hidden" name="operation" value="ATTACK" />
               <input type="hidden" id="planetID" value="<%= currentPlanet.getOwner().getName()%>" name="currentPlayer" />
               <input type="hidden" id="planetID" name="planetID" value="<%= j %>" />
@@ -157,9 +157,7 @@
         }
 		document.getElementById("End Turn").disabled = false;
 	 }
-
-
-  </script>
+ </script>
 
 </body>
 </html>
