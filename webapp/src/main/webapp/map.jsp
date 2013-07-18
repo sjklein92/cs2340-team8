@@ -157,9 +157,7 @@
         }
 		document.getElementById("End Turn").disabled = false;
 	 }
-
-
-  </script>
+ </script>
 
 </body>
 </html>

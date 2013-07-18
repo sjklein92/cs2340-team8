@@ -175,8 +175,6 @@ import javax.servlet.http.HttpServletResponse;
         
     }
 
-    // Still the same as the doAddFleetsToPlanet method
-    // Just wanted to get rid of null pointer exception to test
     protected void doAttack(HttpServletRequest request,
                                     HttpServletResponse response) 
                 throws IOException, ServletException {
