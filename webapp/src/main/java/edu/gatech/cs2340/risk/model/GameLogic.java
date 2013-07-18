@@ -51,14 +51,20 @@ public class GameLogic
         ArrayList<Integer> defendRolls = rollAndSort(defendDie);
 
         for (int i = 0; i < defendRolls.size(); i++) {
-            if (defendRolls.get(i) >= attackRolls.get(i)) 
+            if (defendRolls.get(i) >= attackRolls.get(i)) {
                 attacker.setFleets(attacker.getFleets()-1);
-            else 
+                attacker.getOwner().setTotalFleets(attacker.getOwner().getFleets() - 1);
+            }
+            else {
                 defender.setFleets(defender.getFleets()-1);
+                defender.getOwner().setTotalFleets(defender.getOwner().getFleets() - 1);
+            }
         } 
 
         if (defender.getFleets() <= 0) {
+            defender.getOwner().setNumPlanets(defender.getOwner().getNumPlanets() - 1);
             defender.setOwner(attacker.getOwner());
+            attacker.getOwner().setNumPlanets(attacker.getOwner().getNumPlanets() + 1);
             defender.setFleets(attackDie);
             int currentFleets = attacker.getFleets();
             attacker.setFleets(currentFleets-attackDie);

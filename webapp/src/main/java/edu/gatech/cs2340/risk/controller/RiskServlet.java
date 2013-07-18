@@ -187,16 +187,7 @@ import javax.servlet.http.HttpServletResponse;
         int fleetAmount = Integer.parseInt(request.getParameter("fleetAmount"));
         String currentPlayerName = request.getParameter("currentPlayer");
         game.attackPlanet(planets.get(id), planets.get(attackPlanetID-1), fleetAmount);
-
-        /*
-        for (int i=0; i < planets.size(); i++ ) {
-            if (currentPlayerName.equals(currentPlayer.getName())) {
-                if (i == id) {
-                    break;
-                }
-            }
-
-        }*/
+            
         currentPlayer = players.get(game.getTurn());
         request.setAttribute("players", players);
         request.setAttribute("game", game);

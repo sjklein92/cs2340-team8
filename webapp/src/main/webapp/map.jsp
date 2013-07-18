@@ -107,8 +107,8 @@
 			}
         	</script>	
             </td>
-            <form action="/risk/create/<%= j %>" method="POST">
             <td>
+              <form action="/risk/game" method="POST">
               <input type="hidden" name="operation" value="ATTACK" />
               <input type="hidden" id="planetID" value="<%= currentPlanet.getOwner().getName()%>" name="currentPlayer" />
               <input type="hidden" id="planetID" name="planetID" value="<%= j %>" />
