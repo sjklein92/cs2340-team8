@@ -28,28 +28,6 @@ public class Player {
 		numStarSystems = 1;
 	}
 	
-	public void attack(Planet attack, Planet attackFrom){
-		
-		int attackerNumDice = 0;
-		int attackReceiverNumDice = 0;
-		
-		if(isDifferentPlayer(attack.getOwner()) && attackFrom.getOwner().equals(this)){
-			
-			attackerNumDice = 
-			
-		}
-		
-	}
-	
-	private boolean isDifferentPlayer(Player attackReceiver){
-		boolean isDifferent = true;
-		if(attackReceiver.equals(this){
-			isDifferent = false;
-		}
-		
-		return isDifferent;
-	}
-	
 	/**
 	* Getter method for the number of fleets associated with the player
 	* @return the number of fleets this player has
