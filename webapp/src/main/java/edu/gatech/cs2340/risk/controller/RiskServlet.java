@@ -175,24 +175,22 @@ import javax.servlet.http.HttpServletResponse;
         
     }
 
-    // Still the same as the doAddFleetsToPlanet method
-    // Just wanted to get rid of null pointer exception to test
     protected void doAttack(HttpServletRequest request,
                                     HttpServletResponse response) 
                 throws IOException, ServletException {
 
         System.out.println("In doAttack()");
-        int id = Integer.parseInt(request.getParameter("planetID"));
-        String currentPlayerName = request.getParameter("currentPlayer");
-        for (int i=0; i < planets.size(); i++ ) {
-            if (currentPlayerName.equals(currentPlayer.getName())) {
-                if (i == id) {
-                    break;
-                }
-            }
-
+        try {
+            int id = Integer.parseInt(request.getParameter("planetID"));
+            int attackPlanetID = Integer.parseInt(request.getParameter("viablePlanets"));
+            int fleetAmount = Integer.parseInt(request.getParameter("fleetAmount"));
+            String currentPlayerName = request.getParameter("currentPlayer");
+            game.attackPlanet(planets.get(id), planets.get(attackPlanetID-1), fleetAmount);
+        } catch (NumberFormatException e) {
+            System.err.println("Caught NumberFormatException: " + e.getMessage());
         }
         currentPlayer = players.get(game.getTurn());
+  
         request.setAttribute("players", players);
         request.setAttribute("game", game);
         request.setAttribute("systems", systems);
