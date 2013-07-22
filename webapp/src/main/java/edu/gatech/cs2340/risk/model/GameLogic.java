@@ -132,7 +132,7 @@ public class GameLogic
 
     public int rollDice(){
         Random gen = new Random();
-        int roll = (int) gen.nextInt(6)+1;
+        int roll = gen.nextInt(6)+1;
         return roll;
     }
 
