@@ -39,8 +39,23 @@ public class GameLogic
         if(round != 0){
             newFleetsAdded = players.get(currentPlayer).calcMoreFleets();
         }
-        log = "";
+        log = "No attacks have been made.";
     }
+	
+	public boolean gameOver(){
+		
+		boolean gameOver = false;		
+		
+		StarSystem system = allSystems.get(0);
+		ArrayList<Planet> planetList = system.getPlanets();
+		Player player = planetList.get(0).getOwner();
+		
+		if(player.getNumPlanets() == allSystems.size() * planetList.size()){
+			gameOver = true;
+		}
+		
+		return gameOver;
+	}
 
     public void attackPlanet(Planet defender, Planet attacker, int attackFleetAmount) {
         //assume front end takes care of Panet's being able to attack or not
