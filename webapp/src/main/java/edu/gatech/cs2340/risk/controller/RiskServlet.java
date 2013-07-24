@@ -187,9 +187,9 @@ import javax.servlet.http.HttpServletResponse;
         for (int i=0; i < planets.size(); i++ ) {
             if (currentPlayerName.equals(currentPlayer.getName())) {
                 if (i == id) {
-                    //game.fortifyPlanet(planets.get(id), planets.get(fortifyPlanetID-1));
-                    planets.get(i).setFleets(planets.get(i).getFleets() + 1);
-                    planets.get(fortifyPlanetID-1).setFleets(planets.get(fortifyPlanetID-1).getFleets() - 1);
+                    game.fortifyPlanet(planets.get(fortifyPlanetID-1), planets.get(id));
+                    //planets.get(i).setFleets(planets.get(i).getFleets() + 1);
+                    //planets.get(fortifyPlanetID-1).setFleets(planets.get(fortifyPlanetID-1).getFleets() - 1);
                 }
             }
         }
