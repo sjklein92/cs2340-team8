@@ -162,7 +162,7 @@
               </select>
             </td>
             <td>
-                <input type="text" name="fleetAmount" maxlength="4" size="1" disabled>
+                <input type="text" name="fleetAmount" maxlength="3" size="1" disabled>
             </td>
             </form>
           </tr>  
