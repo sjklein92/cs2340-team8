@@ -151,6 +151,22 @@ public class GameLogic
         Collections.sort(rolls);
         return rolls;
     }
+    /**
+    * This method does not have to return boolean, just thought it would make it easy on front end in case we wanted to throw
+    * a text to the player telling them they can't fortify a fleet from that planet
+    *
+    */
+
+    public boolean fortifyPlanet(Planet planetLosingFleet, Planet planetGainingFleet){
+    	  if(planetLosingFleet.getOwner().equals(planetGainingFleet.getOwner())){
+    	  		if(planetLosingFleet.getFleets() > 1){
+    	  			planetLosingFleet.setFleets(planetLosingFleet.getFleets() - 1);
+    	  			planetGainingFleet.setFleets(planetGainingFleet.getFleets() + 1);
+    	  			return true;
+    	  		}
+    	  }
+    	  return false;
+    }
 
     private void logResult(String appendage) {
         log += "\n" + appendage;
