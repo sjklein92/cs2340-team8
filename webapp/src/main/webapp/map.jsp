@@ -79,7 +79,7 @@
         <th scope="col">Fleet Source</th>
         <th scope="col">Fleet Amount</th>
       </tr>
-      <h1> System <%= (id+1) %></h1>
+      <h1 align="center"> System <%= (id+1) %></h1>
       
 	<% for (int k=0; k < currentSystem.getPlanets().size(); k++,j++) { %>
     <% Planet currentPlanet = currentSystem.getPlanets().get(k); %>
@@ -152,7 +152,7 @@
 </form>
   <form action="/risk/game" method="POST">
   	  <input type="hidden" name="operation" value="GAME" />    
-      <input type="submit" id="End Turn" value="End Turn" disabled/>
+      <input type="submit" id="End Turn" value="End Turn"/>
   </form>
 
 <!-- keeps the buttons from displaying if the player has no fleets to add -->
