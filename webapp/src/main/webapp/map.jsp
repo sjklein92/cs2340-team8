@@ -152,7 +152,7 @@
 </form>
   <form action="/risk/game" method="POST">
   	  <input type="hidden" name="operation" value="GAME" />    
-      <input type="submit" id="End Turn" value="End Turn"/>
+      <input type="submit" id="End Turn" value="End Turn" disabled/>
   </form>
 
 <!-- keeps the buttons from displaying if the player has no fleets to add -->
