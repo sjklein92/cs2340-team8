@@ -22,6 +22,7 @@ public class GameLogic
         numPlayers = players.size();
         allSystems = new ArrayList<StarSystem>();
         turnCount = 0;
+        log = "No attacks have been made.";
         
         for(Player player: players){
             allSystems.add(new StarSystem(player));
