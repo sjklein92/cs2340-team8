@@ -114,7 +114,7 @@
               <input type="hidden" name="operation" value="FORTIFY" />
               <input type="hidden" id="planetID" value="<%= currentPlanet.getOwner().getName()%>" name="currentPlayer" />
               <input type="hidden" id="planetID" name="planetID" value="<%= j %>" />
-              <input type="submit" id="Attack" name="fortifyButtons" value="Fortify" disabled/>
+              <input type="submit" id="fortify" name="fortifyButtons" value="Fortify" disabled/>
             </td>
              <td>
               <select name="fortifyPlanets" disabled>
@@ -128,6 +128,8 @@
                   }
                }%> 
               </select>
+              </td>
+              </form>
               <script type="text/javascript">
               var fortifyButtons = document.getElementsByName("fortifyButtons");
               var fortifyPlanets = document.getElementsByName("fortifyPlanets");
@@ -181,8 +183,8 @@
       if (<%= game.getNewFleetsToBeAdded()%> == 0) {
         for (var i=0; i<document.getElementsByName("addNewFleets").length; i++){
           document.getElementsByName("addNewFleets")[i].disabled = true;
-          document.getElementsByName("fortifyButtons")[i].disabled = true;
-          document.getElementsByName("fortifyPlanets")[i].disabled = true;
+          // document.getElementsByName("fortifyButtons")[i].disabled = true;
+          // document.getElementsByName("fortifyPlanets")[i].disabled = true;
         }
 		for (var i=0; i<document.getElementsByName("attackButtons").length; i++){
           document.getElementsByName("attackButtons")[i].disabled = false;

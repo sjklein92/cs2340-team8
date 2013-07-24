@@ -66,7 +66,7 @@ import javax.servlet.http.HttpServletResponse;
             doAttack(request, response);
         } else if (operation.equalsIgnoreCase("FORTIFY")){
             System.out.println("Delegating to doFortify()");
-            doAttack(request, response);
+            doFortify(request, response);
         }
         else {
             String name = request.getParameter("name");
@@ -180,14 +180,16 @@ import javax.servlet.http.HttpServletResponse;
                                     HttpServletResponse response) 
                 throws IOException, ServletException {
 
-        System.out.println("In doAddFleetsToPlanet()");
+        System.out.println("In doFortify()");
         int id = Integer.parseInt(request.getParameter("planetID"));
         int fortifyPlanetID = Integer.parseInt(request.getParameter("fortifyPlanets"));
         String currentPlayerName = request.getParameter("currentPlayer");
         for (int i=0; i < planets.size(); i++ ) {
             if (currentPlayerName.equals(currentPlayer.getName())) {
                 if (i == id) {
-                    game.fortifyPlanet(planets.get(id), planets.get(fortifyPlanetID-1));
+                    //game.fortifyPlanet(planets.get(id), planets.get(fortifyPlanetID-1));
+                    planets.get(i).setFleets(planets.get(i).getFleets() + 1);
+                    planets.get(fortifyPlanetID-1).setFleets(planets.get(fortifyPlanetID-1).getFleets() - 1);
                 }
             }
         }
