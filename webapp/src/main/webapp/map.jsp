@@ -48,7 +48,7 @@
       <form action="/risk/playerSelection/<%= id %>" method="POST">
       <tr>
         <td><%= players.get(id).getName() %></td>
-        <td><%= players.get(id).getColor() %></td>
+        <th bgcolor= "<%= players.get(id).getColor()%>"> <%= players.get(id).getColor() %></th>
         <td><%= players.get(id).getFleets() %></td>
         <td><%= players.get(id).getNumPlanets() %></td>
       </tr>
@@ -56,7 +56,7 @@
   <% } %>
 </table>
 
-
+<p align="center"><%= game.getLog() %></p>
 <h1 align="center">It is <%= currentPlayer.getName() %>'s turn</h1>
 
 <h2 align="center"><%= currentPlayer.getName() %> has <%=  game.getNewFleetsToBeAdded() %> fleets left to add</h2>
@@ -73,6 +73,11 @@
         <th width="66" scope="col">Planet Name</th>
         <th width="55" scope="col">Owner</th>
         <th width="62" scope="col">Number Of Fleets</th>
+        <th width="" scope="col"></th>
+        <th width="" scope="col"></th>
+        <th width="" scope="col"></th>
+        <th scope="col">Fleet Source</th>
+        <th scope="col">Fleet Amount</th>
       </tr>
       <h1> System <%= (id+1) %></h1>
       
@@ -81,7 +86,7 @@
       <form action="/risk/game" method="POST">
          	<tr>
             <td><%= currentPlanet.getName()%></td>
-            <td><%= currentPlanet.getOwner().getName() %></td>
+            <th bgcolor="<%= currentPlanet.getOwner().getColor()%>"><%= currentPlanet.getOwner().getName() %></th>
             <td><%= currentPlanet.getFleets() %></td>
             
             <!-- So here are all of the buttons, the javascript enables them-->
@@ -106,25 +111,36 @@
 			}
         	</script>	
             </td>
-            <form action="/risk/create/<%= j %>" method="POST">
             <td>
+              <form action="/risk/game" method="POST">
               <input type="hidden" name="operation" value="ATTACK" />
               <input type="hidden" id="planetID" value="<%= currentPlanet.getOwner().getName()%>" name="currentPlayer" />
               <input type="hidden" id="planetID" name="planetID" value="<%= j %>" />
-              <input onclick="attackPrompt(planetID)" type="submit" id="Attack" name="attackButtons" value="Attack" disabled/>
+              <input type="submit" id="Attack" name="attackButtons" value="Attack" disabled/>
+            </td>
+            <td>
+              <input type="submit" id="Fortify" name="fortifyButtons" value="Fortify" disabled/>
             </td>
             <td>
               <select name="viablePlanets" disabled>
                <% for (StarSystem system : game.getAllSystems()) {
                     for (Planet planet : system.getPlanets()) {
-                      if (planet.getOwner().equals(currentPlayer)) {%>
+                      if (planet.getOwner().equals(currentPlayer) 
+                        && (!currentPlanet.getOwner().equals(currentPlayer)) 
+                          && (planet.getFleets() > 1)) {%>
+                        <option value="<%= planet.getName()%>"><%=planet.getName()%></option>
+                      <%}
+                      else if ((planet.getOwner().equals(currentPlayer)) 
+                        && (!planet.equals(currentPlanet)) 
+                          && (planet.getFleets() > 1)) {%>
                         <option value="<%= planet.getName()%>"><%=planet.getName()%></option>
                       <%}
                   }
-               }%>
-
-                
+               }%> 
               </select>
+            </td>
+            <td>
+                <input type="text" name="fleetAmount" maxlength="3" size="1" disabled>
             </td>
             </form>
           </tr>  
@@ -148,14 +164,14 @@
         }
 		for (var i=0; i<document.getElementsByName("attackButtons").length; i++){
           document.getElementsByName("attackButtons")[i].disabled = false;
+          document.getElementsByName("fortifyButtons")[i].disabled = false;
           document.getElementsByName("viablePlanets")[i].disabled = false;
+          document.getElementsByName("fleetAmount")[i].disabled = false;
         }
+
 		document.getElementById("End Turn").disabled = false;
 	 }
+ </script>
 
-
-  </script>
-
-  <script src="attackScript.js"></script>
 </body>
 </html>
